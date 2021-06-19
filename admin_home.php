@@ -1,5 +1,5 @@
-<?php include('server.php') ?>
-session_start();
+<?php include('server.php');?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,35 +22,30 @@ session_start();
 
 
   <div class="wrapper side1">
+    
+    <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3>
-          <p>
-            Welcome
-            <strong>
-              <?php echo $_SESSION['username']; ?>
-            </strong>
+      <h3>
+          <p class="text-left" id="title2">
+            Welcome <strong><?php echo $_SESSION['username']; ?> !</strong>
           </p>
-
-
-          <p>
-        </h3>
-        </h3>
+        </h3> 
       </div>
 
-  </div>
-  <hr>
-  <ul class="list-unstyled components">
-    <li>
-      <a href="#">Dashboard</a>
-    </li>
-    <li>
-      <div class="dropdown">
-        <button class="dropbtn">Books</button>
-        <div class="dropdown-content w-100">
-          <button class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</button>
-          <a href="#">Manage Books</a>
+      <ul class="list-unstyled components">
+        
+        <li class="active">
+          <a href="#menu">Dashboard</a>
+
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn">Books</button>
+            <div class="dropdown-content w-100">
+              <button class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</button>
+              <a href="#">Manage Books</a>
 
         </div>
       </div>
@@ -142,7 +137,10 @@ session_start();
 
   </div>
 
+  
+  </body>
 
+</html>
 
 
 
@@ -168,20 +166,17 @@ session_start();
     });
   </script>
   <script>
-    // $('.addbooks').hide();
-    jQuery(document).ready(function() {
-      jQuery('#hideshowbooks').on('click', function(event) {
+    //$('.addbooks').hide();
+    jQuery(document).ready(function(){
+    jQuery('#hideshowbooks').on('click', function(event) {        
         jQuery('#addbooks').toggle('show');
       });
     });
   </script>
 
-
-
-
-
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
