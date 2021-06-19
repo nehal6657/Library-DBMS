@@ -12,7 +12,7 @@ $email = "";
 $errors = array();
 
 // connect to the database
-$db = mysqli_connect("localhost","root","","lib");
+$db = mysqli_connect("localhost", "root", "", "lib");
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
@@ -24,7 +24,7 @@ if (isset($_POST['reg_user'])) {
     $password2 = mysqli_real_escape_string($db, $_POST['password2']);
     $type = $_POST['type'];
 
-     
+
 
     // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
@@ -48,7 +48,7 @@ if (isset($_POST['reg_user'])) {
     $user = mysqli_fetch_assoc($result);
 
     if ($user) { // if user exists
-        
+
         if ($user['email'] === $email) {
             array_push($errors, "email already exists");
         }
@@ -58,12 +58,12 @@ if (isset($_POST['reg_user'])) {
     if (count($errors) == 0) {
         // $password = md5($password_1); //encrypt the password before saving in the database
 
-        $query = "INSERT INTO students"." (username, name, email, Pass,type) 
-  			  VALUES"."('$username','$name', '$email', '$password','$type')";
+        $query = "INSERT INTO students" . " (username, name, email, Pass,type) 
+  			  VALUES" . "('$username','$name', '$email', '$password','$type')";
         mysqli_query($db, $query);
         $_SESSION['usernname'] = $username;
-        $_SESSION['success'] = "You are now registered";   
-        header('location: login.php');   
+        $_SESSION['success'] = "You are now registered";
+        header('location: login.php');
     }
 }
 
@@ -93,10 +93,44 @@ if (isset($_POST['login_user'])) {
             $_SESSION['success'] = "You are now logged in";
             header('location: admin_home.html ');
         } else {
-            
-            array_push($errors ,"Wrong username/password combination");
+
+            array_push($errors, "Wrong username/password combination");
         }
     }
 }
 
+// <!-- -------------------------------------------login for admin------------------------------------------ -->
+if (isset($_POST['admin_loginuser'])) {
+    $admin_id = mysqli_real_escape_string($db, $_POST['admin_id']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+
+    if (empty($admin_id)) {
+        array_push($errors, "admin_id is required");
+    }
+    if (empty($password)) {
+        array_push($errors,
+            "Password is required"
+        );
+    }
+
+    if (count($errors) == 0
+    ) {
+        // $pswd = md5($user_pswd);
+        // $query = "SELECT * FROM users WHERE user_Fname='$user_Fname' AND user_pswd='$user_pswd'";
+        // $results = mysqli_query($db, $query);
+        $sql_query = "select count(*) as cntUser from admins where admin_id='"  . $admin_id  . "' and admin_pswd='" . $password . "'";
+        // $result = mysqli_query($db, $sql_query);
+        $row = mysqli_fetch_array(mysqli_query($db, $sql_query));
+
+        $count = $row['cntUser'];
+        if ($count > 0) {
+            $_SESSION['admin_id'] = $admin_id;
+            $_SESSION['success'] = "You are now logged in";
+            header('location: admin_home.php ');
+        } else {
+
+            array_push($errors,$admin_id, "Wrong id/password combination");
+        }
+    }
+}
 ?>
