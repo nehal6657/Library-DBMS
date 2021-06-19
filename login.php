@@ -39,6 +39,7 @@
 
         <div class="login-page">
             <div class="form">
+            <img src="./style/logo.png" alt="" height="90px" width="auto"/>
             <form method="post" action="login.php">
                 <?php include('errors.php'); ?>
                 <h2 id="title2">Login Form</h2>
