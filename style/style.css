@@ -1,0 +1,131 @@
+/*-------------------------------------navbar start------------------------*/
+
+.main-nav{
+    text-align: center;
+    font-weight: 700;
+    font-size: 150%;
+    box-shadow: 1.5rem #888888;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background-color: #fdcda0;
+}
+.hm-gradient {
+    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+.navbar .dropdown-menu a:hover {
+    color: #616161 !important;
+}
+.darken-grey-text {
+    color: #2E2E2E;
+}
+.navbar-custom {
+    background-color: #ff5e00;
+}
+@media (max-width: 767px) {
+    .navbar-toggleable-sm {
+      clear:both;
+    }
+  }
+/*-------------------------------------navbar end------------------------*/
+#title1{
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 5.5rem;
+}
+.logo{
+    height: 14rem;
+    width: auto;
+    padding-top: 3rem;
+}
+#Signout1{
+    float: right;
+    color: black;
+    text-transform: initial;
+    font-weight: bolder;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.main-card{
+    background-color: #eeb076;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width: 75%;
+    margin-top: 15rem;
+    padding: 5rem 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15rem;
+    border-radius: 2rem;
+}
+.Sumit{
+    margin-top: 1.2rem;
+    text-transform: capitalize;
+    padding: 1.5rem 2.5rem;
+}
+#titlee{
+    padding-bottom:0.8rem;
+    margin-bottom: 2rem;
+}
+
+.login-page {
+    size: 5rem;
+    height: 3rem;  
+    width: auto;
+    padding: 3.1rem 0 0;
+    margin: auto;
+  }
+  .form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 55px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #f07603;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form button:hover,.form button:active,.form button:focus {
+    background: #f8ba55;
+  }
+  .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+  .form .message a {
+    color: #f07603;
+    text-decoration: none;
+  }
+  .form .register-form {
+    display: none;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
