@@ -91,9 +91,9 @@ if (isset($_POST['login_user'])) {
         $count = $row['cntUser'];
         if ($count > 0) {
             $_SESSION['username'] = $username;
-            
+
             $_SESSION['success'] = "You are now logged in";
-            header('location: admin_home.php');
+            header('location: admin_home.php ');
         } else {
 
             array_push($errors, "Wrong username/password combination");
@@ -103,6 +103,12 @@ if (isset($_POST['login_user'])) {
 /*------------------------------login end ---------------------------------*/
 
 /*------------------------------adding books to the database--------------- */
+$title = "";
+$ISBN = "";
+$publisher = "";
+$edition=" ";
+
+
 if(isset($_POST['addBooks'])){
     // receive all input values from the form
     $title = mysqli_real_escape_string($db, $_POST['name']);
@@ -111,7 +117,7 @@ if(isset($_POST['addBooks'])){
     $edition= mysqli_real_escape_string($db, $_POST['edition']);
     $reftype =  $_POST['reftype'];
     $ttype = $_POST['ttype'];
-    if (empty($name)) {
+    if (empty($title)) {
         array_push($errors, "Book title is required");
     }
     if (empty($ISBN)) {
@@ -120,7 +126,7 @@ if(isset($_POST['addBooks'])){
 
     // first check the database to make sure 
     // a book with same isbn doesnt exist
-    $user_check_query = "SELECT * FROM book WHERE ISBN='$ISBN' LIMIT 1";
+    $user_check_query = "SELECT * FROM book WHERE ISBN='"  . $ISBN  . "' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
