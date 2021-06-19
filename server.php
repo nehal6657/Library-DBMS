@@ -14,7 +14,7 @@ $errors = array();
 // connect to the database
 $db = mysqli_connect("localhost","root","","lib");
 
-// REGISTER USER
+// ------------------------------REGISTER USER------------------------------------
 if (isset($_POST['reg_user'])) {
     // receive all input values from the form
     $name = mysqli_real_escape_string($db, $_POST['name']);
@@ -61,13 +61,14 @@ if (isset($_POST['reg_user'])) {
         $query = "INSERT INTO students"." (username, name, email, Pass,type) 
   			  VALUES"."('$username','$name', '$email', '$password','$type')";
         mysqli_query($db, $query);
-        $_SESSION['usernname'] = $username;
+        $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now registered";   
-        header('location: login.php');   
+        header('location: admin_home.php');   
     }
 }
+/*--------------------------------register endd------------------------------ */
 
-
+/* -------------------------login--------------------------------------- */
 if (isset($_POST['login_user'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -91,12 +92,58 @@ if (isset($_POST['login_user'])) {
         if ($count > 0) {
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "You are now logged in";
-            header('location: register.php');
+            header('location: admin_home.php');
         } else {
             
             array_push($errors ,"Wrong username/password combination");
         }
     }
 }
+/*------------------------------login end ---------------------------------*/
+
+/*------------------------------adding books to the database--------------- */
+if(isset($_POST['addBooks'])){
+    // receive all input values from the form
+    $title = mysqli_real_escape_string($db, $_POST['name']);
+    $ISBN = mysqli_real_escape_string($db, $_POST['ISBN']);
+    $publisher = mysqli_real_escape_string($db, $_POST['publisher']);
+    $edition= mysqli_real_escape_string($db, $_POST['edition']);
+    $reftype =  $_POST['reftype'];
+    $ttype = $_POST['ttype'];
+    if (empty($name)) {
+        array_push($errors, "Book title is required");
+    }
+    if (empty($ISBN)) {
+        array_push($errors, "ISBN is required");
+    }
+
+    // first check the database to make sure 
+    // a book with same isbn doesnt exist
+    $user_check_query = "SELECT * FROM book WHERE ISBN='$ISBN' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user) { // if book exists
+        array_push($errors, "ISBN (book) already exists");
+    }
+    if (count($errors) == 0) {
+        
+        // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
+  		// 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+        $query = "INSERT INTO book". "(ISBN, title, publisher, edition, ref_flag, t_flag) VALUES"."('$ISBN', '$title', '$publisher', '$edition', '$reftype', '$ttype')";
+        mysqli_query($db, $query);
+        echo "book added to db";
+         
+        header('location: login.php');   
+    }
+
+    
+
+
+
+
+}
+
+/* ------------------------------end of adding books--------------------------*/
 
 ?>

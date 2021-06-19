@@ -39,6 +39,7 @@
         
 
       <div class="form">
+        <img src="./style/logo.png" alt="" height="90px" width="auto"/>
           <h2 id="title2">Sign Up Form</h2>
           <form method='post' action='register.php'>
             <?php include('errors.php'); ?>
@@ -46,14 +47,20 @@
 
             <input type="text" placeholder="username" name="username" value="<?php echo $username; ?>" />
             <input type="text" placeholder="email address" name="email" value="<?php echo $email; ?>" />
-            <input type="password" placeholder="password" name="password" value="<?php echo $password; ?>" />
-            <input type="password" placeholder="password2" name="password2" />
-            <p> Please select type of student</p>
-            <input type="radio" name="type" value="0" checked>Btech<br>
-            <input type="radio" name="type" value="1">Mtech<br>
+            <input type="password" placeholder="password" name="password" />
+            <input type="password" placeholder="re-type password" name="password2" />
+            <p class="text-left"> <strong><b>Please select type of student:</b></strong></p>
+            <div class="text-left">
+              
+              <label class="radio-inline">BTech  <input type="radio" name="type" value="0" checked></label>
+              <label class="radio-inline">MTech  <input type="radio" name="type" value="1"></label>
+              <label class="radio-inline">PhD.  <input type="radio" name="type" value="1"></label>
+            </div>
+            <br>
+            <br>
 
             <button name="reg_user">create</button>
-            <p class=" message">Already registered? <a href="login">Sign In</a></p>
+            <p class=" message">Already registered? <a href="login.php">Sign In</a></p>
         </form>
         
     </div>
