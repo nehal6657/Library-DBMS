@@ -90,9 +90,9 @@ if (isset($_POST['login_user'])) {
         $count = $row['cntUser'];
         if ($count > 0) {
             $_SESSION['username'] = $username;
-            
+
             $_SESSION['success'] = "You are now logged in";
-            header('location: admin_home.html ');
+            header('location: admin_home.php ');
         } else {
 
             array_push($errors, "Wrong username/password combination");
