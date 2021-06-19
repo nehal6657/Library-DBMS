@@ -46,7 +46,7 @@
 
             <input type="text" placeholder="username" name="username" value="<?php echo $username; ?>" />
             <input type="text" placeholder="email address" name="email" value="<?php echo $email; ?>" />
-            <input type="password" placeholder="password" name="password" value="<?php echo $password; ?>" />
+            <input type="password" placeholder="password" name="password"  />
             <input type="password" placeholder="password2" name="password2" />
             <p> Please select type of student</p>
             <input type="radio" name="type" value="0" checked>Btech<br>
