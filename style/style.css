@@ -39,6 +39,14 @@
     margin-bottom: 2rem;
     font-family: 'Times New Roman', Times, serif;
 }
+#title3{
+  text-align: left;
+  text-transform: capitalize;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: bolder;
+  color: #e3eeff;
+}
 .logo{
     height: 14rem;
     width: auto;
