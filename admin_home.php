@@ -1,5 +1,5 @@
-<?php include('server.php') ?>
-session_start();
+<?php include('server.php');?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,28 +22,23 @@ session_start();
 
 
   <div class="wrapper side1">
+    
+    <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3>
-          <p>
-            Welcome
-            <strong>
-              <?php echo $_SESSION['username']; ?>
-            </strong>
+      <h3>
+          <p class="text-left" id="title2">
+            Welcome <strong><?php echo $_SESSION['username']; ?> !</strong>
           </p>
-
-
-          <p>
-        </h3>
-        </h3>
+        </h3> 
       </div>
 
-      </div>
-      <hr>
       <ul class="list-unstyled components">
-      <li>
-          <a href="#">Dashboard</a>
+        
+        <li class="active">
+          <a href="#menu">Dashboard</a>
+
         </li>
         <li>
           <div class="dropdown">
@@ -68,11 +63,14 @@ session_start();
         <li>
           <a href="inform.php">Information</a>
         </li>
-        
+
 
       </ul>
+
+
     </nav>
-    <!-- ===============================sidebar end =======================================================-->
+
+   <!-- ===============================sidebar end =======================================================-->
 
 
     <!-- Page Content Holder -->
@@ -105,7 +103,7 @@ session_start();
               <div class="form">
                 <img src="./style/logo.png" alt="" height="90px" width="auto"/>
                   <h2 id="title2">Enter the Book details -></h2>
-                  <form method='post' action='admin_home.php'>
+                  <form method='post' action='admin_home1.php'>
                     <?php include('errors.php'); ?>
                     <input type="text" placeholder="title of book" name="name"/>
                     <input type="number" placeholder="ISBN number" name="ISBN" />
@@ -134,28 +132,7 @@ session_start();
             </div>
             
           </div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-        <img src="./style/logo.png" alt="logo">
-        <h3 id="title3">Library Management System</h3>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="View.php">View profile <span class="sr-only">(current)</span></a>
-              
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-
-          </ul>
-        </div>
-      </nav>
+      
 
 
 
@@ -163,7 +140,10 @@ session_start();
 
   </div>
 
+  
+  </body>
 
+</html>
 
 
 
@@ -189,7 +169,7 @@ session_start();
     });
   </script>
   <script>
-    $('.addbooks').hide();
+    //$('.addbooks').hide();
     jQuery(document).ready(function(){
     jQuery('#hideshowbooks').on('click', function(event) {        
         jQuery('#addbooks').toggle('show');
@@ -197,12 +177,9 @@ session_start();
     });
   </script>
 
-
-
-
-
   </div>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
 </body>
 
 </html>
