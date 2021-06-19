@@ -28,7 +28,7 @@
     <nav id="sidebar">
       <div class="sidebar-header">
       <h3>
-          <p class="text-left" id="title2">
+          <p class="text-left" id="title3">
             Welcome <strong><?php echo $_SESSION['username']; ?> !</strong>
           </p>
         </h3> 
@@ -103,7 +103,7 @@
               <div class="form">
                 <img src="./style/logo.png" alt="" height="90px" width="auto"/>
                   <h2 id="title2">Enter the Book details -></h2>
-                  <form method='post' action='admin_home1.php'>
+                  <form method='post' action='admin_home.php'>
                     <?php include('errors.php'); ?>
                     <input type="text" placeholder="title of book" name="name"/>
                     <input type="number" placeholder="ISBN number" name="ISBN" />
