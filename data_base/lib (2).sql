@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2021 at 04:06 PM
+-- Generation Time: Jun 19, 2021 at 07:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -138,11 +138,22 @@ CREATE TABLE `refer` (
 --
 
 CREATE TABLE `students` (
-  `Sid` varchar(6) NOT NULL,
+  `Sid` int(6) NOT NULL,
+  `Username` varchar(15) DEFAULT NULL,
+  `Name` varchar(25) DEFAULT NULL,
   `Pass` varchar(15) DEFAULT NULL,
-  `issuer_id` int(11) NOT NULL,
-  `type` int(5) DEFAULT NULL
+  `issuer_id` int(11) DEFAULT NULL,
+  `type` int(5) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`Sid`, `Username`, `Name`, `Pass`, `issuer_id`, `type`, `email`) VALUES
+(1, 'shubhanshuagpla', 'shubhanshu0608', '1234', NULL, 0, 'shubhanshuagrawal0608@gmail.com'),
+(2, 'b19058', 'ShellLord83', '1234', NULL, 0, 'b19058@students.iitmandi.ac.in');
 
 -- --------------------------------------------------------
 
@@ -290,6 +301,16 @@ ALTER TABLE `univ`
 ALTER TABLE `written`
   ADD PRIMARY KEY (`A_id`,`ISBN`),
   ADD KEY `FK_ISBN3` (`ISBN`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `Sid` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
