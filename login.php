@@ -1,3 +1,4 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,12 +39,14 @@
 
         <div class="login-page">
             <div class="form">
+            <form method="post" action="login.php">
+                <?php include('errors.php'); ?>
                 <h2 id="title2">Login Form</h2>
-              <form class="login-form" method="POST" action="login">
+            
                 <input type="text" placeholder="Username" name="username"/>
                 <input type="password" placeholder="password" name="password"/>
-                <button type="submit">login</button>
-                <p class="message">Not registered? <a href="register">Create an account</a></p>
+                <button type="submit" name="login_user">login</button>
+                <p class="message">Not registered? <a href="register.php">Create an account</a></p>
               </form>
 
             </div>
