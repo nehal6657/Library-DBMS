@@ -16,7 +16,7 @@
         <div class="navigation">
             <nav class="main-nav sticky-top">
                 <a href="#">
-                    <img src="logo.png width="30" height="30" class="d-inline-block align-top logo" alt="" />
+                    <img src="./style/logo.png" width="30" height="30" class="d-inline-block align-top logo" alt="" />
                     <p id="title1">Library-Management</p>
                 </a>
             </nav>
