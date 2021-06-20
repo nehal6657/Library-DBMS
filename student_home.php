@@ -1,6 +1,6 @@
 <?php include('server.php') ?>
 <?php
-session_start();
+
 $db = mysqli_connect("localhost", "root", "", "lib");
 $name = "";
 $email = "";
@@ -28,6 +28,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/style_student.css">
     <link rel="icon" href="./style/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <title>Admin</title>
@@ -63,8 +64,8 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                         <div class="dropdown">
                             <button class="dropbtn">My_profile</button>
                             <div class="dropdown-content w-100">
-                                <button class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</button>
-                                <button class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</button>
+                                <a class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</a>
+                                <a class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</a>
 
                             </div>
                         </div>
@@ -119,23 +120,21 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                     <div class="View_deatails" id="View_deatails">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                            <h2 id="title2">Your details -></h2>
-                            <form>
-                                <?php include('errors.php'); ?>
-
-                                <label>Name</label>
-                                <input type="text" name="name" value="<?php echo $Name; ?>" disabled />
-                                <label>Sid</label>
-                                <input type="text" value="<?php echo $Sid; ?>" disabled />
-
-                                <label>Email</label>
-                                <input type="text" name="email" value="<?php echo $Email1; ?>" disabled />
-
-                                <label> type of student</label>
-                                <input type="text" name="type" value="<?php echo $type; ?>" disabled />
-
-
-                            </form>
+                            <h2 id="title2 text-center">Your details </h2>
+                            <div class="details text-left">
+                                
+                                <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
+                                <p> <strong>Name: </strong><?php echo $name ?></p>
+                                <p> <strong>User Name: </strong><?php echo $username ?></p>
+                                <p> <strong>Student type: </strong><?php echo $type ?></p>
+                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                            </div>
+<!-- 
+                            $username = $row['Username'];
+    $name = $row['Name'];
+    $email = $row['email'];
+    $Sid = $row['Sid'];
+    $type = $row['type']; -->
                         </div>
                     </div>
 
@@ -146,22 +145,25 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                     <div class="edit" id="edit">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                            <h2 id="title2">Enter the Book details -></h2>
-                            <form method='post' action='student_home.php'>
-                                <?php include('errors.php'); ?>
-                                <label>userame</label>
-                                <input type="text" name="Username" value="<?php echo $Username; ?>" />
-                                <label>Name</label>
-                                <input type="text" name="Name" value="<?php echo $Name; ?>" />
-                                <label>Sid</label>
-                                <input type="text" value="<?php echo $Sid; ?>" disabled />
-
-                                <label>Email</label>
-                                <input type="text" name="Email1" value="<?php echo $Email1; ?>" disabled />
-
-                                <label> type of student</label>
-                                <input type="text" name="type" value="<?php echo $type; ?>" />
-                                <button type="Submit" name="Edit_details ">Edit</button>
+                            <h2 id="title2 text-center">Enter the following details to update profile</h2>
+                            <div class="details text-left">
+                                
+                                <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
+                                <form method='post' action='student_home.php'>
+                                    <?php include('errors.php'); ?>
+                                    <label>username</label>
+                                    <input type="text" name="Username"/>
+                                    <label>Name</label>
+                                    <input type="text" name="Name"/>
+                                    <label>Email</label>
+                                    <input type="text" name="email"/>
+                                    <label> Type of student:</label><br>
+                                    <label class="radio-inline">BTech  <input type="radio" name="type" value="0" checked></label>
+                                    <label class="radio-inline">MTech  <input type="radio" name="type" value="1"></label>
+                                    <label class="radio-inline">PhD.  <input type="radio" name="type" value="1"></label>
+                                    <br>
+                                    <button type="Submit" name="Edit_details ">Edit</button>
+                            </div>
 
                             </form>
                         </div>

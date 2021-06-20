@@ -92,6 +92,8 @@ if (isset($_POST['login_user'])) {
         $count = $row['cntUser'];
         if ($count > 0) {
             $_SESSION['username'] = $username;
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['sid'] = $row['Sid'];
 
             $_SESSION['success'] = "You are now logged in";
             header('location: admin_home.php ');
@@ -156,15 +158,11 @@ if(isset($_POST['addBooks'])){
 
 /* ------------------------------Editing Profile--------------------------*/
 if (isset($_POST['Edit_details'])) {
-    // receive all input values from the form
-    $Username = mysqli_real_escape_string($db, $_POST['Username']);
+    
+    $Username = $_SESSION['username'];
     $Name = mysqli_real_escape_string($db, $_POST['Name']);
-    
-    $Email1 =  $_POST['Email1'];
-    
+    $Email = mysqli_real_escape_string($db, $_POST['']);
     $type = $_POST['type'];
-
-
 
     // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
@@ -174,23 +172,21 @@ if (isset($_POST['Edit_details'])) {
         $_SESSION['username'] = 258;
     }
     
-    // first check the database to make sure 
-    // a user does not already exist with the same username and/or email
-    
-
-    // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
-        // $password = md5($password_1); //encrypt the password before saving in the database
-
         //  $query = "Update students set Name='$name1' where email=' ".$email2 ." ' "  ;
-        $query = "INSERT INTO students" . " (Username, Name,type) 
-  			  VALUES" . "('$Username','$Name','$type')";
+        $query = "";
+        $Sid = $_SESSION['sid'];
+        $sql = "UPDATE students ". "SET Username = '$Username', Name= '$Name', type='$type', email='$Email'". "WHERE Sid = ' ".$Sid ." '";
       
         mysqli_query($db, $query);
-         $_SESSION['username'] = $Username;
+        echo "nehal";
+        $_SESSION['sid'] = $Sid;
+        $_SESSION['username'] = $Username;
+        $_SESSION['email'] = $Email;
+        //$_SESSION['sid'] = $row['Sid'];
+
         array_push($errors, "$Name");
-        $_SESSION['success'] = "You are now registered";
-        //  header('location: student_home.php');
+
     }
 }
 
