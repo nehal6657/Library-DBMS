@@ -38,8 +38,9 @@
     font-size: 3.5rem;
     margin-bottom: 2rem;
     font-family: 'Times New Roman', Times, serif;
-    color: white;
+    
 }
+
 #title3{
   text-align: left;
   text-transform: capitalize;
@@ -341,6 +342,7 @@
   color: white;
   padding: 16px;
   font-size: 16px;
+  height: auto;
   border: none;
   display: flexbox;
   width: 100%;
@@ -374,12 +376,13 @@
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #044caa;}
-
+.dropbtn1 a:hover{background-color: #044caa;}
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #044caa;}
+.dropbtn1:hover .dropbtn{background-color: #044caa;}
 .side1{
   font-size: larger;
   font-weight: 600;

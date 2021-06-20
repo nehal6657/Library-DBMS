@@ -28,7 +28,7 @@
     <nav id="sidebar">
       <div class="sidebar-header">
       <h3>
-          <p class="text-left" id="title2">
+          <p class="text-left" id="title3">
             Welcome <strong><?php echo $_SESSION['username']; ?> !</strong>
           </p>
         </h3> 
@@ -44,8 +44,8 @@
           <div class="dropdown">
             <button class="dropbtn">Books</button>
             <div class="dropdown-content w-100">
-              <button class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</button>
-              <a href="#">Manage Books</a>
+              <a class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</a>
+              <a onclick="managebooks()" id="managebooks">Manage Books</a>
 
         </div>
       </div>
@@ -96,16 +96,18 @@
       </div>
     </nav>
     <div class="main_site">
+
+    <!--adding books-->
       <div class="addbooks" id="addbooks">
         <div class="form">
           <img src="./style/logo.png" alt="" height="90px" width="auto" />
           <h2 id="title2">Enter the Book details -></h2>
           <form method='post' action='admin_home.php'>
             <?php include('errors.php'); ?>
-            <input type="text" placeholder="title of book" name="name" / value="<?php echo $name; ?>">
+            <input type="text" placeholder="title of book" name="name" value="<?php echo $name; ?>" />
             <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
             <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
-            <input type="text" placeholder="edition of book" name="edition" value="<?php echo $edition; ?>" />
+            <input type="text" placeholder="edition of book" name="edition"/>
             <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
             <div class="text-left">
 
@@ -127,11 +129,11 @@
           </form>
         </div>
       </div>
+    <!--adding books end-->
+
+    <!--==============-->
 
     </div>
-
-
-
 
   </div>
 
@@ -166,7 +168,7 @@
     });
   </script>
   <script>
-    //$('.addbooks').hide();
+    $('.addbooks').hide();
     jQuery(document).ready(function(){
     jQuery('#hideshowbooks').on('click', function(event) {        
         jQuery('#addbooks').toggle('show');
