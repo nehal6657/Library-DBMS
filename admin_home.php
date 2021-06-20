@@ -166,7 +166,7 @@
     });
   </script>
   <script>
-    //$('.addbooks').hide();
+    $('.addbooks').hide();
     jQuery(document).ready(function(){
     jQuery('#hideshowbooks').on('click', function(event) {        
         jQuery('#addbooks').toggle('show');
