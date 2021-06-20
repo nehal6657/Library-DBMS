@@ -45,7 +45,7 @@
             <button class="dropbtn">Books</button>
             <div class="dropdown-content w-100">
               <a class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</a>
-              <a onclick="managebooks()" id="managebooks">Manage Books</a>
+              <a onclick="managebooks()" id="hsmanagebooks">Manage Books</a>
 
         </div>
       </div>
@@ -96,6 +96,51 @@
       </div>
     </nav>
     <div class="main_site">
+       <!--============== manage books ==========================-->
+    <div class="managebooks" id="managebooks">
+        <div class="main-card">
+          <h2 id="title2" class="d-flex">Book details</h2>
+          <table class="table table-striped table-hover ">
+            <thead >
+            <tr>
+              <th><strong>ISBN</strong></th>
+              <th><strong>Title</strong></th>
+              <th><strong>Publisher</strong></th>
+              <th><strong>Edition</strong></th>
+              <th><strong>Is refrence book?</strong></th>
+              <th><strong>Is text book?</strong></th>
+              </tr>
+            </thead>
+          <?php
+              $db = mysqli_connect("localhost", "root", "", "lib");
+              if (!$db){ die('Could not connect: ' . mysql_error());}   
+              $sql_query = "select * from book";
+              $result = mysqli_query($db, $sql_query);            
+              while($row = mysqli_fetch_array($result))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['ISBN'] . "</td>";
+                echo "<td>" . $row['title'] . "</td>";
+                echo "<td>" . $row['publisher'] . "</td>";
+                echo "<td>" . $row['edition'] . "</td>";
+                if($row['ref_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                if($row['t_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                
+                echo "</tr>";
+
+                }
+              mysqli_close($db);
+
+              ?>
+              </table>
+        </div>
+      </div>
+    
+    
+    <!--============== manage books end ==========================-->
+
 
     <!--adding books-->
       <div class="addbooks" id="addbooks">
@@ -131,8 +176,7 @@
       </div>
     <!--adding books end-->
 
-    <!--==============-->
-
+   
     </div>
 
   </div>
@@ -172,6 +216,13 @@
     jQuery(document).ready(function(){
     jQuery('#hideshowbooks').on('click', function(event) {        
         jQuery('#addbooks').toggle('show');
+      });
+    });
+
+    $('.managebooks').hide();
+    jQuery(document).ready(function(){
+    jQuery('#hsmanagebooks').on('click', function(event) {        
+        jQuery('#managebooks').toggle('show');
       });
     });
   </script>
