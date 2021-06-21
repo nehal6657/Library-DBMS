@@ -24,6 +24,8 @@
   font-weight: 600;
   padding: 1.5rem;
   margin: 3rem;
+  width: 75%;
+  margin: auto;
 
 }
 .Scard{
@@ -36,5 +38,5 @@
 .main-card{
   background-color: aliceblue;
   width: 80%;
-  
+
 }

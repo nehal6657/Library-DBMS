@@ -189,8 +189,8 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                         
                         
                        
-                            <div class="card Scard main-card">
-                                <div class="card-header">
+                            <div class="main-card">
+                                <div class="card-header p-0 mt-0">
                                 Books Currently issued
                                 </div>
                                 <div class="card-body">
@@ -199,8 +199,8 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
-                            <div class="card Scard main-card">
-                                <div class="card-header">
+                            <div class="main-card">
+                                <div class="card-header p-0 mt-0">
                                 Books to return
                                 </div>
                                 <div class="card-body">
