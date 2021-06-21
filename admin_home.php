@@ -45,6 +45,28 @@ while ($row = mysqli_fetch_assoc($query_run)) {
             </p>
           </h3>
         </div>
+      </div>
+    </li>
+    <li>
+      <div class="dropdown">
+          <button class="dropbtn">My_profile</button>
+          <div class="dropdown-content w-100">
+              <a class="dropbtn1" id="Profile">View_Profile</a>
+              <a class="dropbtn1" id="Edit_profile">Edit Profile</a>
+              <a class="dropbtn1" id="Password">Change Password</a>
+
+          </div>
+      </div>
+    </li>
+    <li>
+      <a href="index.php">Information</a>
+    </li>
+
+
+  </ul>
+  </nav>
+  <!-- ===============================sidebar end =======================================================-->
+
 
         <ul class="list-unstyled components">
 
@@ -76,6 +98,79 @@ while ($row = mysqli_fetch_assoc($query_run)) {
             <a href="inform.php">Information</a>
           </li>
 
+        </ul>
+      </div>
+    </nav>
+    <div class="main_site">
+
+
+    <!--adding books-->
+    <div class="addbooks" id="addbooks">
+        <div class="form">
+          <img src="./style/logo.png" alt="" height="90px" width="auto" />
+          <h2 id="title2">Enter the Book details -></h2>
+          <form method='post' action='admin_home.php'>
+            <?php include('errors.php'); ?>
+            <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
+            <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+            <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
+            <input type="text" placeholder="edition of book" name="edition"/>
+            <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
+            <div class="text-left">
+
+              <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
+              <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
+
+            </div>
+            <br>
+            <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
+            <div class="text-left">
+
+              <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
+              <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
+
+            </div>
+            <br>
+            <button type="Submit" name="addBooks">create</button>
+
+          </form>
+        </div>
+      </div>
+    <!--=============================adding books end====================================-->
+
+       <!--============== manage books ==========================-->
+    <div class="managebooks" id="managebooks">
+        <div class="main-card">
+          <h2 id="title2" class="d-flex">Book details</h2>
+          <table class="table table-striped table-hover ">
+            <thead >
+            <tr>
+              <th><strong>ISBN</strong></th>
+              <th><strong>Title</strong></th>
+              <th><strong>Publisher</strong></th>
+              <th><strong>Edition</strong></th>
+              <th><strong>Is refrence book?</strong></th>
+              <th><strong>Is text book?</strong></th>
+              </tr>
+            </thead>
+          <?php
+              $db = mysqli_connect("localhost", "root", "", "lib");
+              if (!$db){ die('Could not connect: ' . mysql_error());}   
+              $sql_query = "select * from book";
+              $result = mysqli_query($db, $sql_query);            
+              while($row = mysqli_fetch_array($result))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['ISBN'] . "</td>";
+                echo "<td>" . $row['title'] . "</td>";
+                echo "<td>" . $row['publisher'] . "</td>";
+                echo "<td>" . $row['edition'] . "</td>";
+                if($row['ref_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                if($row['t_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                
+                echo "</tr>";?>
 
         </ul>
       </nav>
@@ -153,6 +248,29 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
                 ?>
               </table>
+        </div>
+      </div>
+    
+    
+    <!--============== manage books end ==========================-->
+
+    <!--====================================adding author=======================-->
+    <div class="addbooks" id="addbooks">
+        <div class="form">
+          <img src="./style/logo.png" alt="" height="90px" width="auto" />
+          <h2 id="title2">Enter the Book details -></h2>
+          <form method='post' action='admin_home.php'>
+            <?php include('errors.php'); ?>
+            <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
+            <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+            <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
+            <input type="text" placeholder="edition of book" name="edition"/>
+            <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
+            <div class="text-left">
+
+              <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
+              <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
+
             </div>
           </div>
 
@@ -198,6 +316,54 @@ while ($row = mysqli_fetch_assoc($query_run)) {
         </div>
 
       </div>
+    <!--=============================adding author end====================================-->
+
+       <!--============== manage author ==========================-->
+    <div class="managebooks" id="managebooks">
+        <div class="main-card">
+          <h2 id="title2" class="d-flex">Book details</h2>
+          <table class="table table-striped table-hover ">
+            <thead >
+            <tr>
+              <th><strong>ISBN</strong></th>
+              <th><strong>Title</strong></th>
+              <th><strong>Publisher</strong></th>
+              <th><strong>Edition</strong></th>
+              <th><strong>Is refrence book?</strong></th>
+              <th><strong>Is text book?</strong></th>
+              </tr>
+            </thead>
+          <?php
+              $db = mysqli_connect("localhost", "root", "", "lib");
+              if (!$db){ die('Could not connect: ' . mysql_error());}   
+              $sql_query = "select * from book";
+              $result = mysqli_query($db, $sql_query);            
+              while($row = mysqli_fetch_array($result))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['ISBN'] . "</td>";
+                echo "<td>" . $row['title'] . "</td>";
+                echo "<td>" . $row['publisher'] . "</td>";
+                echo "<td>" . $row['edition'] . "</td>";
+                if($row['ref_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                if($row['t_flag'] ==1){ echo "<td> Yes </td>";}
+                else{echo "<td> No </td>";}
+                
+                echo "</tr>";
+
+                }
+              mysqli_close($db);
+
+              ?>
+              </table>
+        </div>
+      </div>
+    
+    
+    <!--============== manage author end ==========================-->
+
+
 
     </div>
 
@@ -237,10 +403,11 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     });
   });
 
-  $('.managebooks').hide();
-  jQuery(document).ready(function() {
-    jQuery('#hsmanagebooks').on('click', function(event) {
-      jQuery('#managebooks').toggle('show');
+    $('.managebooks').hide();
+    jQuery(document).ready(function(){
+    jQuery('#hsmanagebooks').on('click', function(event) {        
+        jQuery('#managebooks').toggle('show');
+      });
     });
   });
 </script>

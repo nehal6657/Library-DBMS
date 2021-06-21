@@ -43,7 +43,8 @@
         <div class="form">
             <form method="post" action="admin_login.php">
                 <?php include('errors.php'); ?>
-                <h2 id="title2">Login Form</h2>
+                <img src="./style/logo.png" width="30" height="30" class="d-inline-block align-top logo" alt="" />
+                <h2 id="title2">Admin Login</h2>
 
                 <input type="text" placeholder="admin_id" name="admin_id" />
                 <input type="password" placeholder="password" name="password" />

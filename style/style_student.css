@@ -16,3 +16,27 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+.Sdash {
+  align-content: center;
+  text-transform: capitalize;
+  font-size: large;
+  color: black;
+  font-weight: 600;
+  padding: 1.5rem;
+  margin: 3rem;
+  width: 75%;
+  margin: auto;
+
+}
+.Scard{
+  height: min-content;
+  width: auto;
+  margin: 1.2rem;
+  padding: 1.5rem;
+  padding-top: 0;
+}
+.main-card{
+  background-color: aliceblue;
+  width: 80%;
+
+}

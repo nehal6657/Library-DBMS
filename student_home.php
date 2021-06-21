@@ -2,8 +2,6 @@
 
 
 
-
-
 <?php
 
 $db = mysqli_connect("localhost", "root", "", "lib");
@@ -62,8 +60,12 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
 
                 <ul class="list-unstyled components">
 
-                    <li class="active">
-                        <a href="#menu">Dashboard</a>
+                    <li>
+                        <a>Dashboard</a>
+
+                    </li>
+                    <li>
+                        <a onclick="managebooks()" id="hsmanagebooks">View Books</a>
 
                     </li>
                     <li>
@@ -77,16 +79,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="dropdown">
-                            <button class="dropbtn">Authors</button>
-                            <div class="dropdown-content w-100">
-                                <a href="#">Add Authors</a>
-                                <a href="#">Manage Authors</a>
-
-                            </div>
-                        </div>
-                    </li>
+                    
                     <li>
                         <a href="inform.php">Information</a>
                     </li>
@@ -113,9 +106,9 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="Logout.php">Log Out</a>
                             </li>
@@ -136,12 +129,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Student type: </strong><?php echo $type ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                             </div>
-                            <!-- 
-                            $username = $row['Username'];
-    $name = $row['Name'];
-    $email = $row['email'];
-    $Sid = $row['Sid'];
-    $type = $row['type']; -->
+                           
                         </div>
                     </div>
 
@@ -149,6 +137,81 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                 <!-- ===============================VIEW end =======================================================-->
 
                 <div class="main_site">
+                <div class="Sdash">
+                    <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto"/></button>
+                                </div>
+                            </div>
+                
+                        <div class="managebooks" id="managebooks">
+                            <div class="main-card">
+                            <h2 id="title2" class="d-flex">Books present in library</h2>
+                            <table class="table table-striped table-hover ">
+                                <thead >
+                                <tr>
+                                <th><strong>ISBN</strong></th>
+                                <th><strong>Title</strong></th>
+                                <th><strong>Publisher</strong></th>
+                                <th><strong>Edition</strong></th>
+                                <th><strong>Is refrence book?</strong></th>
+                                <th><strong>Is text book?</strong></th>
+                                </tr>
+                                </thead>
+                            <?php
+                                $db = mysqli_connect("localhost", "root", "", "lib");
+                                if (!$db){ die('Could not connect: ' . mysql_error());}   
+                                $sql_query = "select * from book";
+                                $result = mysqli_query($db, $sql_query);            
+                                while($row = mysqli_fetch_array($result))
+                                    {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['ISBN'] . "</td>";
+                                    echo "<td>" . $row['title'] . "</td>";
+                                    echo "<td>" . $row['publisher'] . "</td>";
+                                    echo "<td>" . $row['edition'] . "</td>";
+                                    if($row['ref_flag'] ==1){ echo "<td> Yes </td>";}
+                                    else{echo "<td> No </td>";}
+                                    if($row['t_flag'] ==1){ echo "<td> Yes </td>";}
+                                    else{echo "<td> No </td>";}
+                                    
+                                    echo "</tr>";
+
+                                    }
+                                mysqli_close($db);
+
+                                ?>
+                                </table>
+                            </div>
+                            </div>
+                    
+                        
+                        
+                       
+                            <div class="main-card">
+                                <div class="card-header p-0 mt-0">
+                                Books Currently issued
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title title2"></h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                            <div class="main-card">
+                                <div class="card-header p-0 mt-0">
+                                Books to return
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                                              
+                    </div>
+
                     <div class="edit" id="edit">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -181,6 +244,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
 
                 <!-- ===============================editing end =======================================================-->
                 <div class="main_site">
+                    
                     <div class="Pass" id="Pass">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -264,6 +328,15 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
             jQuery('#Pass').toggle('show');
         });
     });
+</script>
+<script>
+    $('.managebooks').hide();
+    jQuery(document).ready(function(){
+    jQuery('#hsmanagebooks').on('click', function(event) {        
+        jQuery('#managebooks').toggle('show');
+      });
+    });
+  });
 </script>
 
 </div>
