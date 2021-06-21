@@ -1,4 +1,9 @@
-<?php include('server.php') ?>
+<?php include('serv.php') ?>
+
+
+
+
+
 <?php
 
 $db = mysqli_connect("localhost", "root", "", "lib");
@@ -16,6 +21,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     $Sid = $row['Sid'];
     $type = $row['type'];
 }
+$_SESSION['Sid'] = $Sid; // Setting sid for session variable
 ?>
 
 
@@ -66,6 +72,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                             <div class="dropdown-content w-100">
                                 <a class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</a>
                                 <a class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</a>
+                                <a class="dropbtn1" onclick="addBook()" id="Password">Change Password</a>
 
                             </div>
                         </div>
@@ -122,14 +129,14 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
                             <h2 id="title2 text-center">Your details </h2>
                             <div class="details text-left">
-                                
+
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
                                 <p> <strong>Student type: </strong><?php echo $type ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                             </div>
-<!-- 
+                            <!-- 
                             $username = $row['Username'];
     $name = $row['Name'];
     $email = $row['email'];
@@ -147,22 +154,23 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
                             <h2 id="title2 text-center">Enter the following details to update profile</h2>
                             <div class="details text-left">
-                                
+
                                 <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
                                 <form method='post' action='student_home.php'>
                                     <?php include('errors.php'); ?>
                                     <label>username</label>
-                                    <input type="text" name="Username"/>
+                                    <input type="text" name="Username" />
                                     <label>Name</label>
-                                    <input type="text" name="Name"/>
+                                    <input type="text" name="Name" />
                                     <label>Email</label>
-                                    <input type="text" name="email"/>
+                                    <input type="text" name="email" />
+
                                     <label> Type of student:</label><br>
-                                    <label class="radio-inline">BTech  <input type="radio" name="type" value="0" checked></label>
-                                    <label class="radio-inline">MTech  <input type="radio" name="type" value="1"></label>
-                                    <label class="radio-inline">PhD.  <input type="radio" name="type" value="1"></label>
+                                    <label class="radio-inline">BTech <input type="radio" name="type" value="0" checked></label>
+                                    <label class="radio-inline">MTech <input type="radio" name="type" value="1"></label>
+                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="1"></label>
                                     <br>
-                                    <button type="Submit" name="Edit_details ">Edit</button>
+                                    <button type="Submit" name="update">Edit</button>
                             </div>
 
                             </form>
@@ -171,8 +179,33 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
                 </div>
 
+                <!-- ===============================editing end =======================================================-->
+                <div class="main_site">
+                    <div class="Pass" id="Pass">
+                        <div class="form">
+                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                            <h2 id="title2 text-center">Change Password</h2>
+                            <div class="details text-left">
+
+                                <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
+                                <form method='post' action='student_home.php'>
+                                    <?php include('errors.php'); ?>
+                                    <label>Old Password</label>
+                                    <input type="text" name="old" />
+                                    <label>New Password</label>
+                                    <input type="text" name="New" />
+                                    <label>Confirm password</label>
+                                    <input type="text" name="New1" />
 
 
+                                    <button type="Submit" name="change">change</button>
+                            </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -221,6 +254,14 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     jQuery(document).ready(function() {
         jQuery('#Edit_profile').on('click', function(event) {
             jQuery('#edit').toggle('show');
+        });
+    });
+</script>
+<script>
+    $('.Pass').hide();
+    jQuery(document).ready(function() {
+        jQuery('#Password').on('click', function(event) {
+            jQuery('#Pass').toggle('show');
         });
     });
 </script>

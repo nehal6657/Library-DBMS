@@ -1,4 +1,4 @@
-<?php include('server.php') ?>
+<?php include('server1.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +41,7 @@
 
     <div class="login-page">
         <div class="form">
-            <form method="post" action="login.php">
+            <form method="post" action="admin_login.php">
                 <?php include('errors.php'); ?>
                 <h2 id="title2">Login Form</h2>
 
