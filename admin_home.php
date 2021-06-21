@@ -1,4 +1,4 @@
-<?php include('server.php');?>
+<?php include('server1.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -149,7 +149,7 @@
           <h2 id="title2">Enter the Book details -></h2>
           <form method='post' action='admin_home.php'>
             <?php include('errors.php'); ?>
-            <input type="text" placeholder="title of book" name="name" value="<?php echo $name; ?>" />
+            <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
             <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
             <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
             <input type="text" placeholder="edition of book" name="edition"/>
@@ -221,7 +221,7 @@
 
     $('.managebooks').hide();
     jQuery(document).ready(function(){
-    jQuery('#hsmanagebooks').on('click', function(event) {        
+    jQuery('#hsman  agebooks').on('click', function(event) {        
         jQuery('#managebooks').toggle('show');
       });
     });
