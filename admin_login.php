@@ -27,10 +27,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="register.php">Register for students</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="login.php">Login as student</a>
                 </li>
 
             </ul>
@@ -48,7 +48,7 @@
                 <input type="text" placeholder="admin_id" name="admin_id" />
                 <input type="password" placeholder="password" name="password" />
                 <button type="submit" name="admin_loginuser">login</button>
-               
+
             </form>
 
         </div>

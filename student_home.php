@@ -117,7 +117,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <a class="nav-link" href="#">Features</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
+                                <a class="nav-link" href="Logout.php">Log Out</a>
                             </li>
 
                         </ul>
