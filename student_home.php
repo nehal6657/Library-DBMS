@@ -2,8 +2,6 @@
 
 
 
-
-
 <?php
 
 $db = mysqli_connect("localhost", "root", "", "lib");
@@ -77,16 +75,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="dropdown">
-                            <button class="dropbtn">Authors</button>
-                            <div class="dropdown-content w-100">
-                                <a href="#">Add Authors</a>
-                                <a href="#">Manage Authors</a>
-
-                            </div>
-                        </div>
-                    </li>
+                    
                     <li>
                         <a href="inform.php">Information</a>
                     </li>
@@ -113,9 +102,9 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="Logout.php">Log Out</a>
                             </li>
