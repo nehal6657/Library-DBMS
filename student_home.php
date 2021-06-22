@@ -79,7 +79,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                             </div>
                         </div>
                     </li>
-                    
+
                     <li>
                         <a href="index.php">Information</a>
                     </li>
@@ -117,90 +117,107 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                     </div>
                 </nav>
                 <div class="main_site">
-                    
+                    <div class="View_deatails" id="View_deatails">
+                        <div class="form">
+                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                            <h2 id="title2 text-center">Your details </h2>
+                            <div class="details text-left">
+
+                                <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
+                                <p> <strong>Name: </strong><?php echo $name ?></p>
+                                <p> <strong>User Name: </strong><?php echo $username ?></p>
+                                <p> <strong>Student type: </strong><?php echo $type ?></p>
+                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
                 <!-- ===============================VIEW end =======================================================-->
 
                 <div class="main_site">
-                <div class="Sdash">
-                <div class="maindash" id="maindash">
-                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto"/></button>
-                                </div>
+                    <div class="Sdash">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
                             </div>
-                                    <div class="main-card p-1.2 pt-0">
-                                        <div class="card-header p-0 mt-0">
-                                        Books Currently issued
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title title2"></h5>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                                    <div class="main-card pt-0">
-                                        <div class="card-header p-0 mt-0">
-                                        Books to return
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title"></h5>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-                            </div>
-                    
-                
-                        <div class="managebooks" id="managebooks1">
+                        </div>
+
+                        <div class="managebooks" id="managebooks">
                             <div class="main-card">
-                            <h2 id="title2" class="d-flex">Books present in library</h2>
-                            <table class="table table-striped table-hover ">
-                                <thead >
-                                <tr>
-                                <th><strong>ISBN</strong></th>
-                                <th><strong>Title</strong></th>
-                                <th><strong>Publisher</strong></th>
-                                <th><strong>Edition</strong></th>
-                                <th><strong>Is refrence book?</strong></th>
-                                <th><strong>Is text book?</strong></th>
-                                </tr>
-                                </thead>
-                            <?php
-                                $db = mysqli_connect("localhost", "root", "", "lib");
-                               
-                                $sql_query = "select * from book";
-                                $result = mysqli_query($db, $sql_query);            
-                                while($row = mysqli_fetch_array($result))
-                                    {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['ISBN'] . "</td>";
-                                    echo "<td>" . $row['title'] . "</td>";
-                                    echo "<td>" . $row['publisher'] . "</td>";
-                                    echo "<td>" . $row['edition'] . "</td>";
-                                    if($row['ref_flag'] ==1){ echo "<td> Yes </td>";}
-                                    else{echo "<td> No </td>";}
-                                    if($row['t_flag'] ==1){ echo "<td> Yes </td>";}
-                                    else{echo "<td> No </td>";}
-                                    
-                                    echo "</tr>";
+                                <h2 id="title2" class="d-flex">Books present in library</h2>
+                                <table class="table table-striped table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>ISBN</strong></th>
+                                            <th><strong>Title</strong></th>
+                                            <th><strong>Author</strong></th>
 
+                                            <th><strong>Publisher</strong></th>
+                                            <th><strong>Edition</strong></th>
+                                            <th><strong>Is refrence book?</strong></th>
+                                            <th><strong>Is text book?</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                    $db = mysqli_connect("localhost", "root", "", "lib");
+
+                                    $sql_query = "select * from book";
+                                    $result = mysqli_query($db, $sql_query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['ISBN'] . "</td>";
+                                        echo "<td>" . $row['title'] . "</td>";
+                                        echo "<td>" . $row['Author'] . "</td>";
+
+                                        echo "<td>" . $row['publisher'] . "</td>";
+                                        echo "<td>" . $row['edition'] . "</td>";
+                                        if ($row['ref_flag'] == 1) {
+                                            echo "<td> Yes </td>";
+                                        } else {
+                                            echo "<td> No </td>";
+                                        }
+                                        if ($row['t_flag'] == 1) {
+                                            echo "<td> Yes </td>";
+                                        } else {
+                                            echo "<td> No </td>";
+                                        }
+
+                                        echo "</tr>";
                                     }
-                                mysqli_close($db);
+                                    mysqli_close($db);
 
-                                ?>
+                                    ?>
                                 </table>
                             </div>
+                        </div>
+
+
+
+
+                        <div class="main-card">
+                            <div class="card-header p-0 mt-0">
+                                Books Currently issued
                             </div>
-                    
-                        
-                        
-                       
-                            
-                            
-                                              
+                            <div class="card-body">
+                                <h5 class="card-title title2"></h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                        <div class="main-card">
+                            <div class="card-header p-0 mt-0">
+                                Books to return
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="View_deatails" id="View_deatails">
                         <div class="form">
@@ -250,7 +267,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
 
                 <!-- ===============================editing end =======================================================-->
                 <div class="main_site">
-                    
+
                     <div class="Pass" id="Pass">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -357,9 +374,9 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
             $('.Pass').hide();
             $('.edit').hide();
             $('.View_deatails').hide();
+            jQuery('#managebooks').toggle('show');
         });
     });
-
 </script>
 
 </div>
