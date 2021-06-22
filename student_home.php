@@ -161,7 +161,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 </thead>
                             <?php
                                 $db = mysqli_connect("localhost", "root", "", "lib");
-                                if (!$db){ die('Could not connect: ' . mysql_error());}   
+                               
                                 $sql_query = "select * from book";
                                 $result = mysqli_query($db, $sql_query);            
                                 while($row = mysqli_fetch_array($result))
@@ -336,7 +336,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
         jQuery('#managebooks').toggle('show');
       });
     });
-  });
+
 </script>
 
 </div>
