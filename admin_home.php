@@ -3,11 +3,17 @@
 
 $db = mysqli_connect("localhost", "root", "", "lib");
 $admin_name = "";
+$admin_id = "";
+$admin_email = "";
+$phone = "";
 
 $query = "select * from admins where admin_id='$_SESSION[admin_id]'";
 $query_run = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($query_run)) {
   $admin_name = $row['admin_name'];
+  $admin_id = $row['admin_id'];
+  $admin_email = $row['admin_email'];
+  $phone = $row['phone_number'];
 }
 
 ?>
@@ -56,8 +62,9 @@ while ($row = mysqli_fetch_assoc($query_run)) {
               <button class="dropbtn">Books</button>
               <div class="dropdown-content w-100">
                 <a class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</a>
-                <a onclick="managebooks()" id="hsmanagebooks">Manage Books</a>
+                <a onclick="managebooks()" id="hsmanagebooks">View Books</a>
                 <a onclick="managebooks()" id="deletebook">Delete Book</a>
+                <a onclick="managebooks()" id="edit_books">Edit Book</a>
 
               </div>
             </div>
@@ -68,6 +75,18 @@ while ($row = mysqli_fetch_assoc($query_run)) {
               <div class="dropdown-content w-100">
                 <a id="Adding_Author">Add Authors</a>
                 <a id="Manage_auth">Manage Authors</a>
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">My Prrofile</button>
+              <div class="dropdown-content w-100">
+
+                <a class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</a>
+                <a class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</a>
+                <a class="dropbtn1" onclick="addBook()" id="Password">Change Password</a>
 
               </div>
             </div>
@@ -195,9 +214,117 @@ while ($row = mysqli_fetch_assoc($query_run)) {
             </div>
           </div>
           <!--adding books end-->
+
+          <!--editing password -->
+          <div class="main_site">
+
+            <div class="Pass" id="Pass">
+              <div class="form">
+                <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                <h2 id="title2 text-center">Change Password</h2>
+                <div class="details text-left">
+
+                  <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
+                  <form method='post' action='admin_home.php'>
+                    <?php include('errors.php'); ?>
+                    <label>Old Password</label>
+                    <input type="text" name="old" />
+                    <label>New Password</label>
+                    <input type="text" name="New" />
+                    <label>Confirm password</label>
+                    <input type="text" name="New1" />
+
+
+                    <button type="Submit" name="change">change</button>
+                </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+          <!--editing  profile end-->
+
+          <div class="edit" id="edit">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2 text-center">Enter the following details to update profile</h2>
+              <div class="details text-left">
+
+                <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
+                <form method='post' action='admin_home.php'>
+                  <?php include('errors.php'); ?>
+                  <label>Name</label>
+                  <input type="text" name="Name" />
+                  <label>Phone-Number</label>
+                  <input type="text" name="Phone" />
+                  <label>Email</label>
+                  <input type="text" name="email" />
+
+
+                  <button type="Submit" name="update">Edit</button>
+              </div>
+
+              </form>
+            </div>
+          </div>
           <!--adding Authors-->
-          
+          <div class="editbooks" id="editbooks">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2">Enter the Book details to edit with same ISBN number-></h2>
+              <form method='post' action='admin_home.php'>
+                <?php include('errors.php'); ?>
+                <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
+                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
+
+                <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
+                <input type="text" placeholder="edition of book" name="edition" />
+                <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
+
+                </div>
+                <br>
+                <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
+
+                </div>
+                <br>
+                <button type="Submit" name="editbooks">Edit</button>
+
+              </form>
+            </div>
+          </div>
+
           <!--adding authors end-->
+          <div class="main_site">
+            <div class="View_deatails" id="View_deatails">
+              <div class="form">
+                <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                <h2 id="title2 text-center">Your details </h2>
+                <div class="details text-left">
+
+                  <p> <strong>AdminId: </strong><?php echo $admin_id ?></p>
+                  <p> <strong>Name: </strong><?php echo $admin_name ?></p>
+                  <p> <strong>Email: </strong><?php echo $admin_email ?></p>
+                  <p> <strong>phone-number: </strong><?php echo $phone ?></p>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+          <!--------------------------------------------------viewing profile---------------------------------------------->
           <div class="del" id="del">
             <div class="form">
               <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -282,6 +409,31 @@ while ($row = mysqli_fetch_assoc($query_run)) {
   });
 </script>
 <script>
+  $('.View_deatails').hide();
+  jQuery(document).ready(function() {
+    jQuery('#Profile').on('click', function(event) {
+      jQuery('#View_deatails').toggle('show');
+    });
+  });
+</script>
+
+<script>
+  $('.edit').hide();
+  jQuery(document).ready(function() {
+    jQuery('#Edit_profile').on('click', function(event) {
+      jQuery('#edit').toggle('show');
+    });
+  });
+</script>
+<script>
+  $('.Pass').hide();
+  jQuery(document).ready(function() {
+    jQuery('#Password').on('click', function(event) {
+      jQuery('#Pass').toggle('show');
+    });
+  });
+</script>
+<script>
   $('.addbooks').hide();
   jQuery(document).ready(function() {
     jQuery('#hideshowbooks').on('click', function(event) {
@@ -312,6 +464,13 @@ while ($row = mysqli_fetch_assoc($query_run)) {
   jQuery(document).ready(function() {
     jQuery('#deletebook').on('click', function(event) {
       jQuery('#del').toggle('show');
+    });
+  });
+
+  $('.editbooks').hide();
+  jQuery(document).ready(function() {
+    jQuery('#edit_books').on('click', function(event) {
+      jQuery('#editbooks').toggle('show');
     });
   });
 </script>
