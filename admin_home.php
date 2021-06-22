@@ -196,19 +196,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
           </div>
           <!--adding books end-->
           <!--adding Authors-->
-          <div class="Auth" id="Auth">
-            <div class="form">
-              <img src="./style/logo.png" alt="" height="90px" width="auto" />
-              <h2 id="title2">Enter the Author Name -></h2>
-              <form method='post' action='admin_home.php'>
-                <?php include('errors.php'); ?>
-                <input type="text" placeholder="Name of Author" name="Auth_name" value="<?php echo $Auth_name; ?>" />
-
-                <button type="Submit" name="addAuthor">Add</button>
-
-              </form>
-            </div>
-          </div>
+          
           <!--adding authors end-->
           <div class="del" id="del">
             <div class="form">
@@ -230,7 +218,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
               <table class="table table-striped table-hover ">
                 <thead>
                   <tr>
-                    <th><strong>Author ID</strong></th>
+                    <th><strong>Book</strong></th>
                     <th><strong>Author Name</strong></th>
 
                   </tr>
@@ -240,12 +228,12 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                 // if (!$db) {
                 //   die('Could not connect: ' . mysql_error());
                 // }
-                $sql_query = "select * from author";
+                $sql_query = "select * from book";
                 $result = mysqli_query($db, $sql_query);
                 while ($row = mysqli_fetch_array($result)) {
                   echo "<tr>";
-                  echo "<td>" . $row['A_id'] . "</td>";
-                  echo "<td>" . $row['Auth_name'] . "</td>";
+                  echo "<td>" . $row['title'] . "</td>";
+                  echo "<td>" . $row['Author'] . "</td>";
 
 
 

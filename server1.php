@@ -13,23 +13,23 @@ $errors = array();
 $db = mysqli_connect("localhost", "root", "", "lib");
 $_SESSION['conn'] = $db;
 /*------------------------------adding author to the database--------------- */
-$Auth_name=" ";
-if (isset($_POST['addAuthor'])) {
-    $Auth_name = mysqli_real_escape_string($db, $_POST['Auth_name']);
-    if (empty($Auth_name)) {
-        array_push($errors, "Name is required");
-    }
-    if (count($errors) == 0) {
+// $Auth_name=" ";
+// if (isset($_POST['addAuthor'])) {
+//     $Auth_name = mysqli_real_escape_string($db, $_POST['Auth_name']);
+//     if (empty($Auth_name)) {
+//         array_push($errors, "Name is required");
+//     }
+//     if (count($errors) == 0) {
 
-        // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
-        // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        $query = "INSERT INTO author" . "( Auth_name) VALUES" . "( '$Auth_name')";
-        mysqli_query($db, $query);
-        echo "Author added to db";
+//         // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
+//         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+//         $query = "INSERT INTO author" . "( Auth_name) VALUES" . "( '$Auth_name')";
+//         mysqli_query($db, $query);
+//         echo "Author added to db";
 
-        header('location: admin_home.php');
-    }
-}
+//         header('location: admin_home.php');
+//     }
+// }
 /*------------------------------deleting books to the database--------------- */
 
 $ISBN1=" ";
