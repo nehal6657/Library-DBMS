@@ -43,9 +43,10 @@ if (isset($_POST['del'])) {
 
         // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+        $sql = "DELETE FROM book where ISBN=' " . $ISBN1 . " '";
         $query =
-        "DELETE FROM book" ."WHERE ISBN=' " . $ISBN1 . " '";
-        mysqli_query($db, $query);
+        
+        mysqli_query($db, $sql);
         echo "book added to db";
         array_push($errors, $ISBN1);
         header('location: admin_home.php');
