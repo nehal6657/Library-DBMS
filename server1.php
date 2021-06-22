@@ -4,7 +4,7 @@ session_start();
 
 
 $_SESSION['conn'] = "";
-
+$admin_id = $_SESSION['admin_id'];
 
 
 $errors = array();
@@ -12,6 +12,129 @@ $errors = array();
 // connect to the database
 $db = mysqli_connect("localhost", "root", "", "lib");
 $_SESSION['conn'] = $db;
+
+$title = "";
+$ISBN = "";
+$publisher = "";
+$edition = " ";
+$Author = " ";
+
+
+if (isset($_POST['editbooks'])) {
+    // receive all input values from the form
+    $title = mysqli_real_escape_string($db, $_POST['title']);
+    $ISBN = mysqli_real_escape_string($db, $_POST['ISBN']);
+    $publisher = mysqli_real_escape_string($db, $_POST['publisher']);
+    $edition = mysqli_real_escape_string($db, $_POST['edition']);
+    $Author = mysqli_real_escape_string($db, $_POST['Author']);
+    $reftype =  $_POST['reftype'];
+    $ttype = $_POST['ttype'];
+    if (empty($title)) {
+        array_push($errors, "Book title is required");
+    }
+    if (empty($ISBN)) {
+        array_push($errors, "ISBN is required");
+    }
+
+    // first check the database to make sure
+    // a book with same isbn doesnt exist
+    $user_check_query = "SELECT * FROM book WHERE ISBN='"  . $ISBN  . "' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user) { // if book exists
+
+
+
+
+        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
+        // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+        $sql = "UPDATE book SET title = '$title', Author= '$Author', publisher='$publisher',edition='$edition', ref_flag='$reftype',t_flag='$ttype' WHERE ISBN = ' " . $ISBN . " '";
+        // $query = "UPDATE book " . "SET title = '$title', Author= '$Author', publisher='$publisher',edition='$edition', ref_flag='$reftype,t_flag='$ttype'" . "WHERE ISBN = ' " . $ISBN . " '";
+        // // $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$edition', '$reftype', '$ttype')";
+        mysqli_query($db, $sql);
+        echo "book added to db";
+        array_push($errors, $title);
+
+        header('location: admin_home.php');
+    }else{
+        array_push($errors, "ISBN does not match");
+    }
+}
+/*------------------------------Edting  profile to the database--------------- */
+
+if (isset($_POST['update'])) {
+
+    $Phone = $_POST['Phone'];
+    $Name = $_POST['Name'];
+    $Email = $_POST['email'];
+ 
+
+    // // form validation: ensure that the form is correctly filled ...
+    // // by adding (array_push()) corresponding error unto $errors array
+    if (empty($Name)) {
+        array_push($errors, "Name is required");
+        
+    }
+
+    if (count($errors) == 0) {
+
+        $sql = "UPDATE admins SET admin_name = '$Name', admin_email= '$Email', phone_number='$Phone' WHERE admin_id = ' " . $admin_id . " '";
+        // $query = "UPDATE admins " . "SET admin_name = '$Name', admin_emai= '$Email', phone_number='$Phone'" . "WHERE admin_id = ' " . $admin_id . " '";
+
+        mysqli_query($db, $sql);
+
+
+        
+        
+
+
+        array_push($errors, "$Name");
+    }
+}
+
+/*------------------------------updating  password  to the admin of database--------------- */
+
+if (isset($_POST['change'])) {
+    $old = mysqli_real_escape_string($db, $_POST['old']);
+    $New = mysqli_real_escape_string($db, $_POST['New']);
+    $New1 = mysqli_real_escape_string($db, $_POST['New1']);
+
+
+    if (empty($old)) {
+        array_push($errors, "Old password is required");
+    }
+    if (empty($New)) {
+        array_push($errors, "Password is required");
+    }
+    if ($New != $New1) {
+        array_push($errors, "The two passwords do not match");
+    }
+
+    if (
+        count($errors) == 0
+    ) {
+        // $pswd = md5($user_pswd);
+        // $query = "SELECT * FROM users WHERE user_Fname='$user_Fname' AND user_pswd='$user_pswd'";
+        // $results = mysqli_query($db, $query);
+        $sql_query = "select count(*) as cntUser from admins where admin_id='"  . $admin_id  . "' and admin_pswd='" . $old . "'";
+        // $result = mysqli_query($db, $sql_query);
+        $row = mysqli_fetch_array(mysqli_query($db, $sql_query));
+
+        $count = $row['cntUser'];
+        if ($count > 0) {
+            $query = "UPDATE admins " . "SET admin_pswd = '$New'" . "WHERE admin_id = ' " . $admin_id . " '";
+
+            mysqli_query($db, $query);
+
+            $_SESSION['success'] = "You are now logged in";
+            header('location: admin_home.php ');
+        } else {
+
+            array_push($errors, "Old password is incorrect");
+        }
+    }
+}
 /*------------------------------adding author to the database--------------- */
 // $Auth_name=" ";
 // if (isset($_POST['addAuthor'])) {
@@ -21,7 +144,7 @@ $_SESSION['conn'] = $db;
 //     }
 //     if (count($errors) == 0) {
 
-//         // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
+//         // $query = "INSERT INTO students"." (username, name, email, Pass,type)
 //         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
 //         $query = "INSERT INTO author" . "( Auth_name) VALUES" . "( '$Auth_name')";
 //         mysqli_query($db, $query);
@@ -37,15 +160,15 @@ if (isset($_POST['del'])) {
     $ISBN1 =$_POST['ISBN1'];
     if (empty($ISBN1)) {
         array_push($errors, "ISBN is required");
-        
+
     }
     if (count($errors) == 0) {
 
-        // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
+        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
         $sql = "DELETE FROM book where ISBN=' " . $ISBN1 . " '";
         $query =
-        
+
         mysqli_query($db, $sql);
         echo "book added to db";
         array_push($errors, $ISBN1);
@@ -77,7 +200,7 @@ if (isset($_POST['addBooks'])) {
         array_push($errors, "ISBN is required");
     }
 
-    // first check the database to make sure 
+    // first check the database to make sure
     // a book with same isbn doesnt exist
     $user_check_query = "SELECT * FROM book WHERE ISBN='"  . $ISBN  . "' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
@@ -88,7 +211,7 @@ if (isset($_POST['addBooks'])) {
     }
     if (count($errors) == 0) {
 
-        // $query = "INSERT INTO students"." (username, name, email, Pass,type) 
+        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
         $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$edition', '$reftype', '$ttype')";
         mysqli_query($db, $query);
