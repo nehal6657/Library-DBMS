@@ -126,8 +126,26 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php echo $type ?></p>
+                                <p> <strong>Student type: </strong><?php $type1 = "";
+                                    if($type==0) {echo "BTech";}
+                                    else if($type==1) {echo  "MTech";}
+                                    else if($type==2) {echo "PhD";}
+                                    // echo $type ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                                <p> <strong>Issuer id: </strong> <?php 
+                                        //echo $email;
+                                        $db = mysqli_connect("localhost", "root", "", "lib");
+                                        //$query = "SELECT * from students NATURAL join issuer where Sid = '$_SESSION[Sid]'";
+                                        //echo $Sid;
+                                        $query = "select * from students NATURAL JOIN issuer where Sid='$_SESSION[Sid]'";
+                                        $query_run = mysqli_query($db, $query);
+                                        //$x ="";
+                                        while ($row = mysqli_fetch_assoc($query_run)) {
+                                            echo $row['issuer_id'];
+                                        }
+                                        
+                                        
+                                    ?></p>
                             </div>
 
                         </div>
@@ -228,7 +246,13 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php echo $type ?></p>
+                                <p> <strong>Student type: </strong><?php 
+                                    $type1 = "";
+                                    if($type===0) {$type1 = "BTech";}
+                                    else if($type===1) {$type1 = "MTech";}
+                                    else if($type===2) {$type1 = "PhD";}
+                                    echo $type1 ?></p>
+                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                             </div>
                            
@@ -254,7 +278,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                     <label> Type of student:</label><br>
                                     <label class="radio-inline">BTech <input type="radio" name="type" value="0" checked></label>
                                     <label class="radio-inline">MTech <input type="radio" name="type" value="1"></label>
-                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="1"></label>
+                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="2"></label>
                                     <br>
                                     <button type="Submit" name="update">Edit</button>
                             </div>
