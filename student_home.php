@@ -133,10 +133,10 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                     // echo $type ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                                 <p> <strong>Issuer id: </strong> <?php 
-                                        echo $email;
+                                        //echo $email;
                                         $db = mysqli_connect("localhost", "root", "", "lib");
                                         //$query = "SELECT * from students NATURAL join issuer where Sid = '$_SESSION[Sid]'";
-                                        echo $Sid;
+                                        //echo $Sid;
                                         $query = "select * from students NATURAL JOIN issuer where Sid='$_SESSION[Sid]'";
                                         $query_run = mysqli_query($db, $query);
                                         //$x ="";
