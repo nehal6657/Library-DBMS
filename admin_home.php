@@ -15,6 +15,27 @@ while ($row = mysqli_fetch_assoc($query_run)) {
   $admin_email = $row['admin_email'];
   $phone = $row['phone_number'];
 }
+//  <!-- ===============================counting number of students book  =======================================================-->
+$sql_query = "select count(*) as cntUser from students";
+$row = mysqli_fetch_array(mysqli_query($db, $sql_query));
+$count = $row['cntUser'];
+$sql = "select count(*) as cntUser1 from students where type=0";
+$row1 = mysqli_fetch_array(mysqli_query($db, $sql));
+$count1 = $row1['cntUser1'];
+$sql1 = "select count(*) as cntUser2 from students where type=1";
+$row2 = mysqli_fetch_array(mysqli_query($db, $sql1));
+$count2 = $row2['cntUser2'];
+$sql2 = "select count(*) as cntUser3 from students where type=2";
+$row3 = mysqli_fetch_array(mysqli_query($db, $sql2));
+$count3 = $row3['cntUser3'];
+$sql_query5 = "select count(*) as cntUser5 from book";
+$row5 = mysqli_fetch_array(mysqli_query($db, $sql_query5));
+$count5 = $row5['cntUser5'];
+$sql_query6 = "select count(*) as cntUser6 from book where Avail=1";
+$row6 = mysqli_fetch_array(mysqli_query($db, $sql_query6));
+$count6 = $row6['cntUser6'];
+
+
 
 ?>
 <!DOCTYPE html>
@@ -130,70 +151,98 @@ while ($row = mysqli_fetch_assoc($query_run)) {
           <!--=======================dashboard===================================-->
           <div class="dashhh">
             <div class="container maxw">
-            <div class="row">
-              <div class="col m-1.2">
-                <div class="card s1">
+              <div class="row">
+                <div class="col m-1.2">
+                  <div class="card s1">
                     <div class="card-header title2">
                       Number of registered Users
                     </div>
-                  <div class="card-body">
-                    <h3 class="card-text"> Number of students: </h3>
-                    <h4 class="card-text">BTech Students: </h4>
-                    <h4 class="card-text">MTech Students: </h4>
-                    <h4 class="card-text">PhD Students: </h4>
+                    <div class="card-body">
+                      <h3 class="card-text">
+                        <p>
+                          Number of Students : <strong><?php echo $count; ?> </strong>
+                        </p>
+                      </h3>
+                      <h4 class="card-text" <p>
+                        BTech Students:<strong><?php echo $count1; ?> </strong>
+                        </p>
+                      </h4>
+                      <h4 class="card-text">
+                        <p>
+                          MTech Students:<strong><?php echo $count2; ?> </strong>
+                        </p>
+                      </h4>
+                      <h4 class="card-text">
+                        <p>
+                          PHD Students:<strong><?php echo $count3; ?> </strong>
+                        </p>
+                      </h4>
 
-                    <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show students </button></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col m-1.2">
-                <div class="card s1" >
-                    <div class="card-header title2">
-                      Number of Books in library 
+                      <a href="show.php">
+                        <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show students </button>
+
+                        </div>
+                      </a>
                     </div>
-                  <div class="card-body">
-                  <h4 class="card-text"> Total Number of Books: </h4>
-                  <h4 class="card-text"> Number of Books Available: </h4>
-                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    <div class="btq d-flex align-self-end btn-holder"><button type="button" class="btn btn-info s4" id="hsmanagebooks1">Show all books</button></div>
                   </div>
                 </div>
-              </div>
-              <div class="w-100"></div>
-              <div class="col m-1.2">
-              <div class="card s1" >
+                <div class="col m-1.2">
+                  <div class="card s1">
+                    <div class="card-header title2">
+                      Number of Books in library
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-text">
+                        <p>
+                          Total Number of Books:<strong><?php echo $count5; ?> </strong>
+                        </p>
+                      </h4>
+
+                      <h4 class="card-text">
+                        <p>
+                          Number of Books Available:<strong><?php echo $count6; ?> </strong>
+                        </p>
+                      </h4>
+                      <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                      <div class="btq d-flex align-self-end btn-holder"><button type="button" class="btn btn-info s4" id="hsmanagebooks1">Show all books</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col m-1.2">
+                  <div class="card s1">
                     <div class="card-header title2">
                       Number of Books overdue:
                     </div>
-                  <div class="card-body">
-                    <h4 class="card-text"> Number of students: </h4>
-                    <h4 class="card-text"> Number of instructors: </h4>
-                    <!-- <h5 class="card-text"> Number of students: </h5> -->
-                    <!-- <h5 class="card-title">Card title</h5>
+                    <div class="card-body">
+                      <h4 class="card-text"> Number of students: </h4>
+                      <h4 class="card-text"> Number of instructors: </h4>
+                      <!-- <h5 class="card-text"> Number of students: </h5> -->
+                      <!-- <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-                    <!-- <p class="card-text">Shows all books available in library</p>  -->
-                    <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show books overdue</button></div>
+                      <!-- <p class="card-text">Shows all books available in library</p>  -->
+                      <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show books overdue</button></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col m-1.2">
-              <div class="card s1" >
-                  <div class="card-header title2">
-                      Number of Books issued 
+                <div class="col m-1.2">
+                  <div class="card s1">
+                    <div class="card-header title2">
+                      Number of Books issued
                     </div>
-                  <div class="card-body">
-                  <h5 class="card-text"> Number of students: </h5>
-                  <h5 class="card-text"> Number of instructors: </h5>
-                    <!-- <h5 class="card-title">Card title</h5>
+                    <div class="card-body">
+                      <h5 class="card-text"> Number of students: </h5>
+                      <h5 class="card-text"> Number of instructors: </h5>
+                      <!-- <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    
-                    <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show issued books</button></div>
+
+                      <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show issued books</button></div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
             <div class="btq1 d-flex justify-content-center"><button type="button" class="btn btn-primary s2">Issue Books</button></div>
           </div>
@@ -209,7 +258,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                     <th><strong>ISBN</strong></th>
                     <th><strong>Title</strong></th>
                     <th><strong>Author</strong></th>
-
+                    <th><strong>Availablity</strong></th>
                     <th><strong>Publisher</strong></th>
                     <th><strong>Edition</strong></th>
                     <th><strong>Is refrence book?</strong></th>
@@ -227,10 +276,16 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                   echo "<tr>";
                   echo "<td>" . $row['ISBN'] . "</td>";
                   echo "<td>" . $row['title'] . "</td>";
-                  echo "<td>" . $row['Author'] . "</td>";
 
+                  echo "<td>" . $row['Author'] . "</td>";
+                  if ($row['Avail'] == 1) {
+                    echo "<td> Yes </td>";
+                  } else {
+                    echo "<td> No </td>";
+                  }
                   echo "<td>" . $row['publisher'] . "</td>";
                   echo "<td>" . $row['edition'] . "</td>";
+
                   if ($row['ref_flag'] == 1) {
                     echo "<td> Yes </td>";
                   } else {
@@ -268,6 +323,13 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
+                <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="Avail" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="Avail" value="0"></label>
+
+                </div>
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -355,8 +417,16 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
                 <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
 
+
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
+                <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="Avail" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="Avail" value="0"></label>
+
+                </div>
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -382,80 +452,80 @@ while ($row = mysqli_fetch_assoc($query_run)) {
           <!--adding authors end-->
           <div class="main_site">
           </div>
-            <div class="View_deatails  mt-2" id="View_deatails">
-              <div class="form">
-                <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                <h2 id="title2 text-center">Your details </h2>
-                <div class="details text-left">
-
-                  <p> <strong>AdminId: </strong><?php echo $admin_id ?></p>
-                  <p> <strong>Name: </strong><?php echo $admin_name ?></p>
-                  <p> <strong>Email: </strong><?php echo $admin_email ?></p>
-                  <p> <strong>phone-number: </strong><?php echo $phone ?></p>
-
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-
-
-          <!--------------------------------------------------viewing profile---------------------------------------------->
-          <div class="del  mt-2" id="del">
+          <div class="View_deatails  mt-2" id="View_deatails">
             <div class="form">
               <img src="./style/logo.png" alt="" height="90px" width="auto" />
-              <h2 id="title2">Enter the ISBN Number -></h2>
-              <form method='post' action='admin_home.php'>
-                <?php include('errors.php'); ?>
-                <input type="text" placeholder="ISBN Number" name="ISBN1" value="<?php echo $ISBN1; ?>" />
+              <h2 id="title2 text-center">Your details </h2>
+              <div class="details text-left">
 
-                <button type="Submit" name="del">Delete</button>
+                <p> <strong>AdminId: </strong><?php echo $admin_id ?></p>
+                <p> <strong>Name: </strong><?php echo $admin_name ?></p>
+                <p> <strong>Email: </strong><?php echo $admin_email ?></p>
+                <p> <strong>phone-number: </strong><?php echo $phone ?></p>
 
-              </form>
+              </div>
+
             </div>
           </div>
-          <!--Manage  books -->
-          <div class="manageAuth" id="manageAuth">
-            <div class="main-card">
-              <h2 id="title2" class="d-flex">Author details</h2>
-              <table class="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th><strong>Book</strong></th>
-                    <th><strong>Author Name</strong></th>
-
-                  </tr>
-                </thead>
-                <?php
-                $db = mysqli_connect("localhost", "root", "", "lib");
-                // if (!$db) {
-                //   die('Could not connect: ' . mysql_error());
-                // }
-                $sql_query = "select * from book";
-                $result = mysqli_query($db, $sql_query);
-                while ($row = mysqli_fetch_array($result)) {
-                  echo "<tr>";
-                  echo "<td>" . $row['title'] . "</td>";
-                  echo "<td>" . $row['Author'] . "</td>";
-
-
-
-                  echo "</tr>";
-                }
-                mysqli_close($db);
-
-                ?>
-              </table>
-            </div>
-          </div>
-
 
         </div>
+
+
+        <!--------------------------------------------------viewing profile---------------------------------------------->
+        <div class="del  mt-2" id="del">
+          <div class="form">
+            <img src="./style/logo.png" alt="" height="90px" width="auto" />
+            <h2 id="title2">Enter the ISBN Number -></h2>
+            <form method='post' action='admin_home.php'>
+              <?php include('errors.php'); ?>
+              <input type="text" placeholder="ISBN Number" name="ISBN1" value="<?php echo $ISBN1; ?>" />
+
+              <button type="Submit" name="del">Delete</button>
+
+            </form>
+          </div>
+        </div>
+        <!--Manage  books -->
+        <div class="manageAuth" id="manageAuth">
+          <div class="main-card">
+            <h2 id="title2" class="d-flex">Author details</h2>
+            <table class="table table-striped table-hover ">
+              <thead>
+                <tr>
+                  <th><strong>Book</strong></th>
+                  <th><strong>Author Name</strong></th>
+
+                </tr>
+              </thead>
+              <?php
+              $db = mysqli_connect("localhost", "root", "", "lib");
+              // if (!$db) {
+              //   die('Could not connect: ' . mysql_error());
+              // }
+              $sql_query = "select * from book";
+              $result = mysqli_query($db, $sql_query);
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['title'] . "</td>";
+                echo "<td>" . $row['Author'] . "</td>";
+
+
+
+                echo "</tr>";
+              }
+              mysqli_close($db);
+
+              ?>
+            </table>
+          </div>
+        </div>
+
 
       </div>
 
     </div>
+
+  </div>
 
 
 </body>

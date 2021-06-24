@@ -18,7 +18,7 @@ $ISBN = "";
 $publisher = "";
 $edition = " ";
 $Author = " ";
-
+$Avail=" ";
 
 if (isset($_POST['editbooks'])) {
     // receive all input values from the form
@@ -27,6 +27,7 @@ if (isset($_POST['editbooks'])) {
     $publisher = mysqli_real_escape_string($db, $_POST['publisher']);
     $edition = mysqli_real_escape_string($db, $_POST['edition']);
     $Author = mysqli_real_escape_string($db, $_POST['Author']);
+    $Avail = mysqli_real_escape_string($db, $_POST['Avail']);
     $reftype =  $_POST['reftype'];
     $ttype = $_POST['ttype'];
     if (empty($title)) {
@@ -49,7 +50,7 @@ if (isset($_POST['editbooks'])) {
 
         // $query = "INSERT INTO students"." (username, name, email, Pass,type)
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        $sql = "UPDATE book SET title = '$title', Author= '$Author', publisher='$publisher',edition='$edition', ref_flag='$reftype',t_flag='$ttype' WHERE ISBN = ' " . $ISBN . " '";
+        $sql = "UPDATE book SET title = '$title', Author= '$Author',Avail='$Avail', publisher='$publisher',edition='$edition', ref_flag='$reftype',t_flag='$ttype' WHERE ISBN = ' " . $ISBN . " '";
         // $query = "UPDATE book " . "SET title = '$title', Author= '$Author', publisher='$publisher',edition='$edition', ref_flag='$reftype,t_flag='$ttype'" . "WHERE ISBN = ' " . $ISBN . " '";
         // // $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$edition', '$reftype', '$ttype')";
         mysqli_query($db, $sql);
@@ -182,6 +183,7 @@ $ISBN = "";
 $publisher = "";
 $edition = " ";
 $Author=" ";
+$Avail=" ";
 
 
 if (isset($_POST['addBooks'])) {
@@ -191,6 +193,7 @@ if (isset($_POST['addBooks'])) {
     $publisher = mysqli_real_escape_string($db, $_POST['publisher']);
     $edition = mysqli_real_escape_string($db, $_POST['edition']);
     $Author = mysqli_real_escape_string($db, $_POST['Author']);
+    $Avail = mysqli_real_escape_string($db, $_POST['Avail']);
     $reftype =  $_POST['reftype'];
     $ttype = $_POST['ttype'];
     if (empty($title)) {
@@ -213,7 +216,7 @@ if (isset($_POST['addBooks'])) {
 
         // $query = "INSERT INTO students"." (username, name, email, Pass,type)
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$edition', '$reftype', '$ttype')";
+        $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,Avail,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$Avail','$edition', '$reftype', '$ttype')";
         mysqli_query($db, $query);
         echo "book added to db";
 
