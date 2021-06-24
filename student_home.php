@@ -61,7 +61,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                 <ul class="list-unstyled components">
 
                     <li>
-                        <a>Dashboard</a>
+                        <a id="hsmaindash">Dashboard</a>
 
                     </li>
                     <li>
@@ -81,7 +81,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                     </li>
 
                     <li>
-                        <a href="inform.php">Information</a>
+                        <a href="index.php">Information</a>
                     </li>
 
 
@@ -126,8 +126,26 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php echo $type ?></p>
+                                <p> <strong>Student type: </strong><?php $type1 = "";
+                                    if($type==0) {echo "BTech";}
+                                    else if($type==1) {echo  "MTech";}
+                                    else if($type==2) {echo "PhD";}
+                                    // echo $type ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                                <p> <strong>Issuer id: </strong> <?php 
+                                        //echo $email;
+                                        $db = mysqli_connect("localhost", "root", "", "lib");
+                                        //$query = "SELECT * from students NATURAL join issuer where Sid = '$_SESSION[Sid]'";
+                                        //echo $Sid;
+                                        $query = "select * from students NATURAL JOIN issuer where Sid='$_SESSION[Sid]'";
+                                        $query_run = mysqli_query($db, $query);
+                                        //$x ="";
+                                        while ($row = mysqli_fetch_assoc($query_run)) {
+                                            echo $row['issuer_id'];
+                                        }
+                                        
+                                        
+                                    ?></p>
                             </div>
 
                         </div>
@@ -219,6 +237,27 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                         </div>
 
                     </div>
+                    <div class="View_deatails" id="View_deatails">
+                        <div class="form">
+                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                            <h2 id="title2 text-center">Your details </h2>
+                            <div class="details text-left">
+
+                                <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
+                                <p> <strong>Name: </strong><?php echo $name ?></p>
+                                <p> <strong>User Name: </strong><?php echo $username ?></p>
+                                <p> <strong>Student type: </strong><?php 
+                                    $type1 = "";
+                                    if($type===0) {$type1 = "BTech";}
+                                    else if($type===1) {$type1 = "MTech";}
+                                    else if($type===2) {$type1 = "PhD";}
+                                    echo $type1 ?></p>
+                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                            </div>
+                           
+                        </div>
+                    </div>
 
                     <div class="edit" id="edit">
                         <div class="form">
@@ -239,7 +278,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                     <label> Type of student:</label><br>
                                     <label class="radio-inline">BTech <input type="radio" name="type" value="0" checked></label>
                                     <label class="radio-inline">MTech <input type="radio" name="type" value="1"></label>
-                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="1"></label>
+                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="2"></label>
                                     <br>
                                     <button type="Submit" name="update">Edit</button>
                             </div>
@@ -319,6 +358,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
             jQuery('#View_deatails').toggle('show');
         });
     });
+    $('.maindash').hide();
 </script>
 
 <script>
@@ -328,6 +368,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
             jQuery('#edit').toggle('show');
         });
     });
+    $('.maindash').hide();
 </script>
 <script>
     $('.Pass').hide();
@@ -336,11 +377,27 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
             jQuery('#Pass').toggle('show');
         });
     });
+    $('.maindash').hide();
 </script>
 <script>
     $('.managebooks').hide();
     jQuery(document).ready(function() {
         jQuery('#hsmanagebooks').on('click', function(event) {
+            jQuery('#managebooks1').toggle('show');
+        });
+    });
+    $('.maindash').hide();
+</script>
+<script>
+    
+    $('.maindash').show();
+    jQuery(document).ready(function() {
+        jQuery('#hsmaindash').on('click', function(event) {
+            jQuery('#maindash').toggle('show');
+            $('.managebooks').hide();
+            $('.Pass').hide();
+            $('.edit').hide();
+            $('.View_deatails').hide();
             jQuery('#managebooks').toggle('show');
         });
     });
