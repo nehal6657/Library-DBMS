@@ -334,7 +334,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                   <h4 class="card-text"> Number of Books Available: </h4>
                     <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                    <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show all books</button></div>
+                    <div class="btq d-flex align-self-end btn-holder"><button type="button" class="btn btn-info s4" id="hsmanagebooks1">Show all books</button></div>
                   </div>
                 </div>
               </div>
@@ -517,6 +517,11 @@ while ($row = mysqli_fetch_assoc($query_run)) {
   $('.managebooks').hide();
   jQuery(document).ready(function() {
     jQuery('#hsmanagebooks').on('click', function(event) {
+      jQuery('#managebooks').toggle('show');
+    });
+  });
+  jQuery(document).ready(function() {
+    jQuery('#hsmanagebooks1').on('click', function(event) {
       jQuery('#managebooks').toggle('show');
     });
   });
