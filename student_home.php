@@ -3,13 +3,14 @@
 
 
 <?php
-
+session_start();
 $db = mysqli_connect("localhost", "root", "", "lib");
 $name = "";
 $email = "";
 $type = "";
 $Sid = "";
 $username = "";
+$issuer = " ";
 $query = "select * from students where Username='$_SESSION[username]'";
 $query_run = mysqli_query($db, $query);
 while ($row = mysqli_fetch_assoc($query_run)) {
@@ -20,6 +21,17 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     $type = $row['type'];
 }
 $_SESSION['Sid'] = $Sid; // Setting sid for session variable
+
+
+// $db = mysqli_connect("localhost", "root", "", "lib");
+//$query = "SELECT * from students NATURAL join issuer where Sid = '$_SESSION[Sid]'";
+//echo $Sid;
+$query1 = "select * from students NATURAL JOIN issuer where Sid='$_SESSION[Sid]'";
+$query_run1 = mysqli_query($db, $query1);
+//$x ="";
+while ($row = mysqli_fetch_assoc($query_run1)) {
+    $issuer = $row['issuer_id'];
+}
 ?>
 
 
@@ -127,25 +139,17 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
                                 <p> <strong>Student type: </strong><?php $type1 = "";
-                                    if($type==0) {echo "BTech";}
-                                    else if($type==1) {echo  "MTech";}
-                                    else if($type==2) {echo "PhD";}
-                                    // echo $type ?></p>
+                                                                    if ($type == 0) {
+                                                                        echo "BTech";
+                                                                    } else if ($type == 1) {
+                                                                        echo  "MTech";
+                                                                    } else if ($type == 2) {
+                                                                        echo "PhD";
+                                                                    }
+                                                                    // echo $type 
+                                                                    ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
-                                <p> <strong>Issuer id: </strong> <?php 
-                                        //echo $email;
-                                        $db = mysqli_connect("localhost", "root", "", "lib");
-                                        //$query = "SELECT * from students NATURAL join issuer where Sid = '$_SESSION[Sid]'";
-                                        //echo $Sid;
-                                        $query = "select * from students NATURAL JOIN issuer where Sid='$_SESSION[Sid]'";
-                                        $query_run = mysqli_query($db, $query);
-                                        //$x ="";
-                                        while ($row = mysqli_fetch_assoc($query_run)) {
-                                            echo $row['issuer_id'];
-                                        }
-                                        
-                                        
-                                    ?></p>
+                                <p> <strong>Issuer id: </strong> <?php echo $issuer ?></p>
                             </div>
 
                         </div>
@@ -172,7 +176,7 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                             <th><strong>ISBN</strong></th>
                                             <th><strong>Title</strong></th>
                                             <th><strong>Author</strong></th>
-
+                                            <th><strong>Availability</strong></th>
                                             <th><strong>Publisher</strong></th>
                                             <th><strong>Edition</strong></th>
                                             <th><strong>Is refrence book?</strong></th>
@@ -189,7 +193,11 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                         echo "<td>" . $row['ISBN'] . "</td>";
                                         echo "<td>" . $row['title'] . "</td>";
                                         echo "<td>" . $row['Author'] . "</td>";
-
+                                        if ($row['Avail'] == 1) {
+                                            echo "<td> Yes </td>";
+                                        } else {
+                                            echo "<td> No </td>";
+                                        }
                                         echo "<td>" . $row['publisher'] . "</td>";
                                         echo "<td>" . $row['edition'] . "</td>";
                                         if ($row['ref_flag'] == 1) {
@@ -246,16 +254,20 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php 
-                                    $type1 = "";
-                                    if($type===0) {$type1 = "BTech";}
-                                    else if($type===1) {$type1 = "MTech";}
-                                    else if($type===2) {$type1 = "PhD";}
-                                    echo $type1 ?></p>
+                                <p> <strong>Student type: </strong><?php
+                                                                    $type1 = "";
+                                                                    if ($type === 0) {
+                                                                        $type1 = "BTech";
+                                                                    } else if ($type === 1) {
+                                                                        $type1 = "MTech";
+                                                                    } else if ($type === 2) {
+                                                                        $type1 = "PhD";
+                                                                    }
+                                                                    echo $type1 ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                             </div>
-                           
+
                         </div>
                     </div>
 
@@ -389,7 +401,6 @@ $_SESSION['Sid'] = $Sid; // Setting sid for session variable
     $('.maindash').hide();
 </script>
 <script>
-    
     $('.maindash').show();
     jQuery(document).ready(function() {
         jQuery('#hsmaindash').on('click', function(event) {
