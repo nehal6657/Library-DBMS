@@ -64,7 +64,7 @@
 }
 
 .main-card{
-    background-color: #90bac7;
+    background-color: #9fdaf0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     width: 75%;
     margin-top: 15rem;
@@ -413,6 +413,7 @@
   padding: 1.2rem;
 }
 .btq{
+  margin-top: 1.2rem;
   margin: auto;
 }
 .s4{
