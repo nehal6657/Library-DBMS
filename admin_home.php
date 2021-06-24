@@ -136,6 +136,8 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                   <tr>
                     <th><strong>ISBN</strong></th>
                     <th><strong>Title</strong></th>
+                    <th><strong>Author</strong></th>
+
                     <th><strong>Publisher</strong></th>
                     <th><strong>Edition</strong></th>
                     <th><strong>Is refrence book?</strong></th>
@@ -153,6 +155,8 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                   echo "<tr>";
                   echo "<td>" . $row['ISBN'] . "</td>";
                   echo "<td>" . $row['title'] . "</td>";
+                  echo "<td>" . $row['Author'] . "</td>";
+
                   echo "<td>" . $row['publisher'] . "</td>";
                   echo "<td>" . $row['edition'] . "</td>";
                   if ($row['ref_flag'] == 1) {
