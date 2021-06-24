@@ -127,186 +127,8 @@ while ($row = mysqli_fetch_assoc($query_run)) {
           </div>
         </nav>
         <div class="main_site">
-          <!--============== manage books ==========================-->
-          <div class="managebooks" id="managebooks">
-            <div class="main-card">
-              <h2 id="title2" class="d-flex">Book details</h2>
-              <table class="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th><strong>ISBN</strong></th>
-                    <th><strong>Title</strong></th>
-                    <th><strong>Publisher</strong></th>
-                    <th><strong>Edition</strong></th>
-                    <th><strong>Is refrence book?</strong></th>
-                    <th><strong>Is text book?</strong></th>
-                  </tr>
-                </thead>
-                <?php
-                $db = mysqli_connect("localhost", "root", "", "lib");
-                // if (!$db) {
-                //   die('Could not connect: ' . mysql_error());
-                // }
-                $sql_query = "select * from book";
-                $result = mysqli_query($db, $sql_query);
-                while ($row = mysqli_fetch_array($result)) {
-                  echo "<tr>";
-                  echo "<td>" . $row['ISBN'] . "</td>";
-                  echo "<td>" . $row['title'] . "</td>";
-                  echo "<td>" . $row['publisher'] . "</td>";
-                  echo "<td>" . $row['edition'] . "</td>";
-                  if ($row['ref_flag'] == 1) {
-                    echo "<td> Yes </td>";
-                  } else {
-                    echo "<td> No </td>";
-                  }
-                  if ($row['t_flag'] == 1) {
-                    echo "<td> Yes </td>";
-                  } else {
-                    echo "<td> No </td>";
-                  }
-
-                  echo "</tr>";
-                }
-                mysqli_close($db);
-
-                ?>
-              </table>
-            </div>
-          </div>
-
-
-          <!--============== manage books end ==========================-->
-
-
-          <!--adding books-->
-          <div class="addbooks" id="addbooks">
-            <div class="form">
-              <img src="./style/logo.png" alt="" height="90px" width="auto" />
-              <h2 id="title2">Enter the Book details -></h2>
-              <form method='post' action='admin_home.php'>
-                <?php include('errors.php'); ?>
-                <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
-                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
-                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
-
-                <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
-                <input type="text" placeholder="edition of book" name="edition" />
-                <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
-
-                </div>
-                <br>
-                <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
-
-                </div>
-                <br>
-                <button type="Submit" name="addBooks">create</button>
-
-              </form>
-            </div>
-          </div>
-          <!--adding books end-->
-
-          <!--editing password -->
-          <div class="main_site">
-
-            <div class="Pass" id="Pass">
-              <div class="form">
-                <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                <h2 id="title2 text-center">Change Password</h2>
-                <div class="details text-left">
-
-                  <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
-                  <form method='post' action='admin_home.php'>
-                    <?php include('errors.php'); ?>
-                    <label>Old Password</label>
-                    <input type="text" name="old" />
-                    <label>New Password</label>
-                    <input type="text" name="New" />
-                    <label>Confirm password</label>
-                    <input type="text" name="New1" />
-
-
-                    <button type="Submit" name="change">change</button>
-                </div>
-
-                </form>
-              </div>
-            </div>
-
-          </div>
-          <!--editing  profile end-->
-
-          <div class="edit" id="edit">
-            <div class="form">
-              <img src="./style/logo.png" alt="" height="90px" width="auto" />
-              <h2 id="title2 text-center">Enter the following details to update profile</h2>
-              <div class="details text-left">
-
-                <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
-                <form method='post' action='admin_home.php'>
-                  <?php include('errors.php'); ?>
-                  <label>Name</label>
-                  <input type="text" name="Name" />
-                  <label>Phone-Number</label>
-                  <input type="text" name="Phone" />
-                  <label>Email</label>
-                  <input type="text" name="email" />
-
-
-                  <button type="Submit" name="update">Edit</button>
-              </div>
-
-              </form>
-            </div>
-          </div>
-          <!--adding Authors-->
-          <div class="editbooks" id="editbooks">
-            <div class="form">
-              <img src="./style/logo.png" alt="" height="90px" width="auto" />
-              <h2 id="title2">Enter the Book details to edit with same ISBN number-></h2>
-              <form method='post' action='admin_home.php'>
-                <?php include('errors.php'); ?>
-                <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
-                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
-                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
-
-                <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
-                <input type="text" placeholder="edition of book" name="edition" />
-                <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
-
-                </div>
-                <br>
-                <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
-
-                </div>
-                <br>
-                <button type="Submit" name="editbooks">Edit</button>
-
-              </form>
-            </div>
-          </div>
-
-          <!--adding authors end-->
-          <div class="main_site">
           <!--=======================dashboard===================================-->
-            <div class="dashhh">
+          <div class="dashhh">
             <div class="container maxw">
             <div class="row">
               <div class="col m-1.2">
@@ -377,8 +199,186 @@ while ($row = mysqli_fetch_assoc($query_run)) {
           </div>
           <!--=======================dashboard end===================================-->
 
+          <!--============== manage books ==========================-->
+          <div class="managebooks" id="managebooks">
+            <div class="main-card">
+              <h2 id="title2" class="d-flex">Book details</h2>
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th><strong>ISBN</strong></th>
+                    <th><strong>Title</strong></th>
+                    <th><strong>Publisher</strong></th>
+                    <th><strong>Edition</strong></th>
+                    <th><strong>Is refrence book?</strong></th>
+                    <th><strong>Is text book?</strong></th>
+                  </tr>
+                </thead>
+                <?php
+                $db = mysqli_connect("localhost", "root", "", "lib");
+                // if (!$db) {
+                //   die('Could not connect: ' . mysql_error());
+                // }
+                $sql_query = "select * from book";
+                $result = mysqli_query($db, $sql_query);
+                while ($row = mysqli_fetch_array($result)) {
+                  echo "<tr>";
+                  echo "<td>" . $row['ISBN'] . "</td>";
+                  echo "<td>" . $row['title'] . "</td>";
+                  echo "<td>" . $row['publisher'] . "</td>";
+                  echo "<td>" . $row['edition'] . "</td>";
+                  if ($row['ref_flag'] == 1) {
+                    echo "<td> Yes </td>";
+                  } else {
+                    echo "<td> No </td>";
+                  }
+                  if ($row['t_flag'] == 1) {
+                    echo "<td> Yes </td>";
+                  } else {
+                    echo "<td> No </td>";
+                  }
+
+                  echo "</tr>";
+                }
+                mysqli_close($db);
+
+                ?>
+              </table>
+            </div>
           </div>
-            <div class="View_deatails" id="View_deatails">
+
+
+          <!--============== manage books end ==========================-->
+
+
+          <!--adding books-->
+          <div class="addbooks mt-2" id="addbooks">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2">Enter the Book details -></h2>
+              <form method='post' action='admin_home.php'>
+                <?php include('errors.php'); ?>
+                <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
+                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
+
+                <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
+                <input type="text" placeholder="edition of book" name="edition" />
+                <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
+
+                </div>
+                <br>
+                <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
+
+                </div>
+                <br>
+                <button type="Submit" name="addBooks">create</button>
+
+              </form>
+            </div>
+          </div>
+          <!--adding books end-->
+
+          <!--editing password -->
+          <div class="main_site  mt-2">
+
+            <div class="Pass  mt-2" id="Pass">
+              <div class="form">
+                <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                <h2 id="title2 text-center">Change Password</h2>
+                <div class="details text-left">
+
+                  <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
+                  <form method='post' action='admin_home.php'>
+                    <?php include('errors.php'); ?>
+                    <label>Old Password</label>
+                    <input type="text" name="old" />
+                    <label>New Password</label>
+                    <input type="text" name="New" />
+                    <label>Confirm password</label>
+                    <input type="text" name="New1" />
+
+
+                    <button type="Submit" name="change">change</button>
+                </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+          <!--editing  profile end-->
+
+          <div class="edit  mt-2" id="edit">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2 text-center">Enter the following details to update profile</h2>
+              <div class="details text-left">
+
+                <p> <strong>Your Admin Id: </strong><?php echo $admin_id ?></p>
+                <form method='post' action='admin_home.php'>
+                  <?php include('errors.php'); ?>
+                  <label>Name</label>
+                  <input type="text" name="Name" />
+                  <label>Phone-Number</label>
+                  <input type="text" name="Phone" />
+                  <label>Email</label>
+                  <input type="text" name="email" />
+
+
+                  <button type="Submit" name="update">Edit</button>
+              </div>
+
+              </form>
+            </div>
+          </div>
+          <!--adding Authors-->
+          <div class="editbooks  mt-2" id="editbooks">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2">Enter the Book details to edit with same ISBN number-></h2>
+              <form method='post' action='admin_home.php'>
+                <?php include('errors.php'); ?>
+                <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
+                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
+
+                <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
+                <input type="text" placeholder="edition of book" name="edition" />
+                <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="reftype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="reftype" value="0"></label>
+
+                </div>
+                <br>
+                <p class="text-left"> <strong><b>Is text Book:</b></strong></p>
+                <div class="text-left">
+
+                  <label class="radio-inline"> Yes <input type="radio" name="ttype" value="1" checked></label>
+                  <label class="radio-inline"> No <input type="radio" name="ttype" value="0"></label>
+
+                </div>
+                <br>
+                <button type="Submit" name="editbooks">Edit</button>
+
+              </form>
+            </div>
+          </div>
+
+          <!--adding authors end-->
+          <div class="main_site">
+          </div>
+            <div class="View_deatails  mt-2" id="View_deatails">
               <div class="form">
                 <img src="./style/logo.png" alt="" height="90px" width="auto" />
                 <h2 id="title2 text-center">Your details </h2>
@@ -398,7 +398,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
 
           <!--------------------------------------------------viewing profile---------------------------------------------->
-          <div class="del" id="del">
+          <div class="del  mt-2" id="del">
             <div class="form">
               <img src="./style/logo.png" alt="" height="90px" width="auto" />
               <h2 id="title2">Enter the ISBN Number -></h2>
