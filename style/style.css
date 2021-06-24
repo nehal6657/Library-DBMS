@@ -387,3 +387,37 @@
   font-size: larger;
   font-weight: 600;
 }
+.dashhh{
+  border: 1px solid blue; 
+  width: 80%;
+  margin: auto;
+  padding: 1.3rem;
+}
+.maxw{
+  max-width: 1160px;
+  margin:1.2rem;
+  
+}
+.s1{
+  padding: 1.2rem;
+  margin: auto;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  height: max-content;
+  min-height: 210px;
+}
+.s2{
+  width: 75%;
+  margin:auto;
+  font-size: large;
+  padding: 1.2rem;
+}
+.btq{
+  margin: auto;
+}
+.s4{
+  text-transform: capitalize;
+  font-size: larger;
+  font-weight: 600;
+  width: 90%;
+}

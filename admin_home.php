@@ -305,6 +305,79 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
           <!--adding authors end-->
           <div class="main_site">
+          <!--=======================dashboard===================================-->
+            <div class="dashhh">
+            <div class="container maxw">
+            <div class="row">
+              <div class="col m-1.2">
+                <div class="card s1">
+                    <div class="card-header title2">
+                      Number of registered Users
+                    </div>
+                  <div class="card-body">
+                    <h3 class="card-text"> Number of students: </h3>
+                    <h4 class="card-text">BTech Students: </h4>
+                    <h4 class="card-text">MTech Students: </h4>
+                    <h4 class="card-text">PhD Students: </h4>
+
+                    <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show students </button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col m-1.2">
+                <div class="card s1" >
+                    <div class="card-header title2">
+                      Number of Books in library 
+                    </div>
+                  <div class="card-body">
+                  <h4 class="card-text"> Total Number of Books: </h4>
+                  <h4 class="card-text"> Number of Books Available: </h4>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show all books</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-100"></div>
+              <div class="col m-1.2">
+              <div class="card s1" >
+                    <div class="card-header title2">
+                      Number of Books overdue:
+                    </div>
+                  <div class="card-body">
+                    <h4 class="card-text"> Number of students: </h4>
+                    <h4 class="card-text"> Number of instructors: </h4>
+                    <!-- <h5 class="card-text"> Number of students: </h5> -->
+                    <!-- <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                    <!-- <p class="card-text">Shows all books available in library</p>  -->
+                    <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show books overdue</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col m-1.2">
+              <div class="card s1" >
+                  <div class="card-header title2">
+                      Number of Books issued 
+                    </div>
+                  <div class="card-body">
+                  <h5 class="card-text"> Number of students: </h5>
+                  <h5 class="card-text"> Number of instructors: </h5>
+                    <!-- <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    
+                    <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show issued books</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="btq1 d-flex justify-content-center"><button type="button" class="btn btn-primary s2">Issue Books</button></div>
+          </div>
+          <!--=======================dashboard end===================================-->
+
+          </div>
             <div class="View_deatails" id="View_deatails">
               <div class="form">
                 <img src="./style/logo.png" alt="" height="90px" width="auto" />
