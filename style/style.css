@@ -407,10 +407,10 @@
   min-height: 210px;
 }
 .s2{
-  width: 75%;
-  margin:auto;
-  font-size: large;
-  padding: 1.2rem;
+  /*width: 75% !important;*/ 
+  margin:auto !important;
+  font-size: large !important;
+  padding: 1.2rem !important;
 }
 .btq{
   margin-top: 1.2rem;
@@ -421,4 +421,11 @@
   font-size: larger;
   font-weight: 600;
   width: 90%;
+}
+.black{
+  color: black !important; 
+}
+.f1{
+  max-width: 1160px;
+  width: 70%;
 }
