@@ -158,30 +158,21 @@ $count6 = $row6['cntUser6'];
                       Number of registered Users
                     </div>
                     <div class="card-body">
-                      <h3 class="card-text">
-                        <p>
+                      <h4 class="card-text black">
+                        <p class="black">
                           Number of Students : <strong><?php echo $count; ?> </strong>
-                        </p>
-                      </h3>
-                      <h4 class="card-text" <p>
-                        BTech Students:<strong><?php echo $count1; ?> </strong>
-                        </p>
-                      </h4>
-                      <h4 class="card-text">
-                        <p>
+                          <br>
+                          BTech Students:<strong><?php echo $count1; ?> </strong>
+                          <br>
                           MTech Students:<strong><?php echo $count2; ?> </strong>
-                        </p>
-                      </h4>
-                      <h4 class="card-text">
-                        <p>
+                          <br>
                           PHD Students:<strong><?php echo $count3; ?> </strong>
                         </p>
                       </h4>
 
                       <a href="show.php">
                         <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show students </button>
-
-                        </div>
+                      </div>
                       </a>
                     </div>
                   </div>
@@ -195,11 +186,7 @@ $count6 = $row6['cntUser6'];
                       <h4 class="card-text">
                         <p>
                           Total Number of Books:<strong><?php echo $count5; ?> </strong>
-                        </p>
-                      </h4>
-
-                      <h4 class="card-text">
-                        <p>
+                          <br>
                           Number of Books Available:<strong><?php echo $count6; ?> </strong>
                         </p>
                       </h4>
@@ -244,7 +231,7 @@ $count6 = $row6['cntUser6'];
                 </div>
               </div>
             </div>
-            <div class="btq1 d-flex justify-content-center"><button type="button" class="btn btn-primary s2">Issue Books</button></div>
+            <div class="btq1 d-flex justify-content-center"><form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1">Issue Books</button></form></div>
           </div>
           <!--=======================dashboard end===================================-->
 
