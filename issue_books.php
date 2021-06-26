@@ -1,5 +1,6 @@
 <?php include('server1.php'); 
 include('issue.php');
+
 $db = mysqli_connect("localhost", "root", "", "lib");
 $admin_name = "";
 $admin_id = "";
