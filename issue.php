@@ -7,6 +7,7 @@ $C_id="";
 $Issuer_id="";
 $errors = array();
 $x="";
+$type1 = "";
 // connect to the database
 $db = mysqli_connect("localhost", "root", "", "lib");
 $_SESSION['conn'] = $db;
@@ -17,7 +18,7 @@ if (isset($_POST['issueBooks'])) {
     $ISBN = mysqli_real_escape_string($db, $_POST['ISBN']);
     $C_id = mysqli_real_escape_string($db, $_POST['Copyid']);
     $Issuer_id = mysqli_real_escape_string($db, $_POST['Issuerid']);
-    $type = $_POST['type'];
+    // $type = $_POST['type'];
 
 
 
@@ -42,11 +43,57 @@ if (isset($_POST['issueBooks'])) {
     $ISSUER = "SELECT * FROM `issuer` WHERE issuer_id = '$Issuer_id' ";
     $result1 = mysqli_query($db, $ISSUER);
     $res1 = mysqli_fetch_assoc($result1);
+    $copy_check_query = "SELECT * FROM `issues` WHERE C_id = '$C_id' and ISBN ='$ISBN'";
+    $resu = mysqli_query($db, $copy_check_query);
+    $resu1 = mysqli_fetch_assoc($resu);
+    if ($resu1) {
+        array_push($errors, "This book already issued!!");
+    }
     if(!$res){
         array_push($errors, "no such book exists!!");
     }
     if (!$res1) {
         array_push($errors, "no such issuer exists!!");
+    }
+    if (count($errors) == 0) {
+        $sql_query = "select * from students NATURAL JOIN issuer WHERE issuer_id = '$Issuer_id'";
+        $result2 = mysqli_query($db, $sql_query);
+        $res2 = mysqli_fetch_assoc($result2);
+        if (!$res2) {
+            $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 30 DAY)";
+            mysqli_query($db, $query);
+            echo "issuer added to db";
+
+            header('location: issue_books.php');
+        }else if ($res2){
+                $sql_1 = "select * from students NATURAL JOIN issuer WHERE issuer_id = '$Issuer_id'";
+                $res_1 = mysqli_query($db, $sql_1);
+                $row_1 = mysqli_fetch_array($res_1);
+                $type1 = $row_1['type'];
+            
+                if ($type1 == 0) {
+                    $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 10 DAY)";
+                    mysqli_query($db, $query);
+                
+                    echo "issuer added to db";
+
+                    header('location: issue_books.php');
+                } else if ($type1 == 1) {
+                    $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 15 DAY)";
+                    mysqli_query($db, $query);
+                    echo "issuer added to db";
+
+                    header('location: issue_books.php');
+                } else if ($type1 == 2) {
+                    $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 20 DAY)";
+                    mysqli_query($db, $query);
+                    echo "issuer added to db";
+
+                    header('location: issue_books.php');
+                }
+        }
+    }
+        
     }
     
     
@@ -68,38 +115,38 @@ if (isset($_POST['issueBooks'])) {
         
     //     header('location: issue_books.php');   
     // }
-    if (count($errors) == 0) {
+    // if (count($errors) == 0) {
 
-        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
-        // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        if ($type==0){
-            $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 10 DAY)";
-            mysqli_query($db, $query);
-            echo "issuer added to db";
+    //     // $query = "INSERT INTO students"." (username, name, email, Pass,type)
+    //     // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+    //     if ($type==0){
+    //         $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 10 DAY)";
+    //         mysqli_query($db, $query);
+    //         echo "issuer added to db";
 
-            header('location: issue_books.php');
-        }else if($type==1){
-            $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 15 DAY)";
-            mysqli_query($db, $query);
-            echo "issuer added to db";
+    //         header('location: issue_books.php');
+    //     }else if($type==1){
+    //         $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 15 DAY)";
+    //         mysqli_query($db, $query);
+    //         echo "issuer added to db";
 
-            header('location: issue_books.php');
-        } else if ($type == 2) {
-            $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 20 DAY)";
-            mysqli_query($db, $query);
-            echo "issuer added to db";
+    //         header('location: issue_books.php');
+    //     } else if ($type == 2) {
+    //         $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 20 DAY)";
+    //         mysqli_query($db, $query);
+    //         echo "issuer added to db";
 
-            header('location: issue_books.php');
-        } else if ($type == 3) {
-            $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 30 DAY)";
-            mysqli_query($db, $query);
-            echo "issuer added to db";
+    //         header('location: issue_books.php');
+    //     } else if ($type == 3) {
+    //         $query = "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 30 DAY)";
+    //         mysqli_query($db, $query);
+    //         echo "issuer added to db";
 
-            header('location: issue_books.php');
-        }
+    //         header('location: issue_books.php');
+    //     }
         
-    }
+    // }
 
-}
+    
 /*--------------------------------register endd------------------------------ */
 ?>
