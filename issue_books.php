@@ -217,7 +217,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
 
                 </div> -->
                 <input type="number" placeholder="Issuer id:" name="Issuerid" />
-                <p class="text-left"> <strong><b>Type of issuer:</b></strong></p>
+                <!-- <p class="text-left"> <strong><b>Type of issuer:</b></strong></p>
                 <div class="text-left">
 
                   <label class="radio-inline"> Student - BTech<input type="radio" name="type" value="0" checked></label><br>
@@ -226,7 +226,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                   <label class="radio-inline"> instructor <input type="radio" name="type" value="3"></label><br>
 
 
-                </div> 
+                </div>  -->
                 <br>
                 
                 <button type="Submit" name="issueBooks">Issue</button>

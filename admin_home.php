@@ -31,10 +31,24 @@ $count3 = $row3['cntUser3'];
 $sql_query5 = "select count(*) as cntUser5 from book";
 $row5 = mysqli_fetch_array(mysqli_query($db, $sql_query5));
 $count5 = $row5['cntUser5'];
-$sql_query6 = "select count(*) as cntUser6 from book where Avail=1";
+$sql_query6 = "select count(*) as cntUser6 from issues ";
 $row6 = mysqli_fetch_array(mysqli_query($db, $sql_query6));
 $count6 = $row6['cntUser6'];
-
+$sql = "select count(*) as cnt from issuer NATURAL JOIN issues WHERE return_date < now() and Sid>0";
+$ro = mysqli_fetch_array(mysqli_query($db, $sql));
+$co = $ro['cnt'];
+$sql1 = "select count(*) as cnt1 from issuer NATURAL JOIN issues WHERE return_date < now() and Sid=0";
+$ro1 = mysqli_fetch_array(mysqli_query($db, $sql1));
+$co1 = $ro1['cnt1'];
+$sql2 = "select count(*) as cnt2 from issuer NATURAL JOIN issues WHERE return_date > now() and Sid>0";
+$ro2 = mysqli_fetch_array(mysqli_query($db, $sql2));
+$co2 = $ro2['cnt2'];
+$sql3 = "select count(*) as cnt3 from issuer NATURAL JOIN issues WHERE return_date < now() and Sid=0";
+$ro3 = mysqli_fetch_array(mysqli_query($db, $sql3));
+$co3 = $ro3['cnt3'];
+$sql_query8 = "select count(*) as cntUser8 from copy";
+$row8 = mysqli_fetch_array(mysqli_query($db, $sql_query8));
+$count8 = $row8['cntUser8'];
 
 
 ?>
@@ -172,7 +186,7 @@ $count6 = $row6['cntUser6'];
 
                       <a href="show.php">
                         <div class="btq d-flex align-self-end"><button type="button" class="btn btn-info s4">Show students </button>
-                      </div>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -185,9 +199,11 @@ $count6 = $row6['cntUser6'];
                     <div class="card-body">
                       <h4 class="card-text">
                         <p>
-                          Total Number of Books:<strong><?php echo $count5; ?> </strong>
+                          Total Number of Different Books:<strong><?php echo $count5; ?> </strong>
                           <br>
-                          Number of Books Available:<strong><?php echo $count6; ?> </strong>
+                          Total Number of Books in Library:<strong><?php echo $count8; ?> </strong>
+                          <br>
+                          Number of Books Available:<strong><?php echo $count8 - $count6; ?> </strong>
                         </p>
                       </h4>
                       <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
@@ -203,13 +219,24 @@ $count6 = $row6['cntUser6'];
                       Number of Books overdue:
                     </div>
                     <div class="card-body">
-                      <h4 class="card-text"> Number of students: </h4>
-                      <h4 class="card-text"> Number of instructors: </h4>
+                      <h4 class="card-text">
+                        <p>
+                          Number of students:<strong><?php echo $co; ?> </strong>
+                          <br>
+                          Number of instructors:<strong><?php echo $co1; ?> </strong>
+
+
+                        </p>
+                      </h4>
+                      <!-- <h4 class="card-text"> Number of students: </h4>
+                      <h4 class="card-text"> Number of instructors: </h4> -->
                       <!-- <h5 class="card-text"> Number of students: </h5> -->
                       <!-- <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
                       <!-- <p class="card-text">Shows all books available in library</p>  -->
-                      <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show books overdue</button></div>
+                      <a href="Return.php">
+                        <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show books overdue</button></div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -219,19 +246,31 @@ $count6 = $row6['cntUser6'];
                       Number of Books issued
                     </div>
                     <div class="card-body">
-                      <h5 class="card-text"> Number of students: </h5>
-                      <h5 class="card-text"> Number of instructors: </h5>
+
+                      <h5 class="card-text">
+                        <p>
+                          Number of students:<strong><?php echo $co2; ?> </strong>
+                          <br>
+                          Number of instructors:<strong><?php echo $co3; ?> </strong>
+
+
+                        </p>
+                      </h5>
+
                       <!-- <h5 class="card-title">Card title</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-
-                      <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show issued books</button></div>
+                      <a href="isbooks.php">
+                        <div class="btq d-flex align-items-end"><button type="button" class="btn btn-info s4">Show issued books</button></div>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="btq1 d-flex justify-content-center"><form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1">Issue Books</button></form></div>
+            <div class="btq1 d-flex justify-content-center">
+              <form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1">Issue Books</button></form>
+            </div>
           </div>
           <!--=======================dashboard end===================================-->
 
@@ -245,7 +284,8 @@ $count6 = $row6['cntUser6'];
                     <th><strong>ISBN</strong></th>
                     <th><strong>Title</strong></th>
                     <th><strong>Author</strong></th>
-                    <th><strong>Availablity</strong></th>
+                    <th><strong>Total Copy</strong></th>
+                    <th><strong>Available Copy</strong></th>
                     <th><strong>Publisher</strong></th>
                     <th><strong>Edition</strong></th>
                     <th><strong>Is refrence book?</strong></th>
@@ -260,16 +300,23 @@ $count6 = $row6['cntUser6'];
                 $sql_query = "select * from book";
                 $result = mysqli_query($db, $sql_query);
                 while ($row = mysqli_fetch_array($result)) {
+                  $g = $row['ISBN'];
+                  $sql = "select count(*) as val from book NATURAL JOIN copy WHERE ISBN = '$g'";
+                  $rw1 = mysqli_fetch_array(mysqli_query($db, $sql));
+                  $cn1 = $rw1['val'];
+                  $sq2 = "select count(*) as val1 from book NATURAL JOIN issues WHERE ISBN = '$g'";
+                  $rw2 = mysqli_fetch_array(mysqli_query($db, $sq2));
+                  $cn2 = $rw2['val1'];
+                  $a=$cn1-$cn2;
+
                   echo "<tr>";
                   echo "<td>" . $row['ISBN'] . "</td>";
                   echo "<td>" . $row['title'] . "</td>";
 
                   echo "<td>" . $row['Author'] . "</td>";
-                  if ($row['Avail'] == 1) {
-                    echo "<td> Yes </td>";
-                  } else {
-                    echo "<td> No </td>";
-                  }
+                  echo "<td>" . $cn1 . "</td>";
+                  echo "<td>" . $a . "</td>";
+
                   echo "<td>" . $row['publisher'] . "</td>";
                   echo "<td>" . $row['edition'] . "</td>";
 
