@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="icon" href="./style/logo.png" type="image/png">
-    <title>Register Page</title>
+    <title>Veiw details</title>
 </head>
 
 <body>
