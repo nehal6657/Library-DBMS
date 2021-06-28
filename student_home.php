@@ -147,7 +147,13 @@ $count3 = $row3['cnt1'];
             <div class="container maxw">
             <div class="Sdash">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
+                            <input type="text" class="form-control" placeholder="Search by book name" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
+                            </div>
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search by book author" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
                             </div>
