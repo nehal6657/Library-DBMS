@@ -42,9 +42,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
                 <li class="nav-item active">
                     <a class="nav-link" href="#">View profile <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="#">Log-out</a>
                 </li>

@@ -104,16 +104,7 @@ $count8 = $row8['cntUser8'];
               </div>
             </div>
           </li>
-          <li>
-            <div class="dropdown">
-              <button class="dropbtn">Authors</button>
-              <div class="dropdown-content w-100">
-                <a id="Adding_Author">Add Authors</a>
-                <a id="Manage_auth">Manage Authors</a>
-
-              </div>
-            </div>
-          </li>
+         
           <li>
             <div class="dropdown">
               <button class="dropbtn">My Profile</button>
