@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 // initializing variables
 $ISBN="";
@@ -95,6 +95,63 @@ if (isset($_POST['issueBooks'])) {
     }
         
     }
+if (isset($_POST['returnBooks'])) {
+    // receive all input values from the form
+    $ISBN = mysqli_real_escape_string($db, $_POST['ISBN']);
+    $C_id = mysqli_real_escape_string($db, $_POST['Copyid']);
+    $Issuer_id = mysqli_real_escape_string($db, $_POST['Issuerid']);
+    // $type = $_POST['type'];
+
+
+
+    // form validation: ensure that the form is correctly filled ...
+    // by adding (array_push()) corresponding error unto $errors array
+    if (empty($ISBN)) {
+        array_push($errors, "ISBN of book is required");
+    }
+    if (empty($C_id)) {
+        array_push($errors, "Copy id is required");
+    }
+    if (empty($Issuer_id)) {
+        array_push($errors, "Issuer id is required");
+    }
+
+
+    // first check the database to make sure 
+    // a user does not already exist with the same username and/or email
+    $book_check_query = "SELECT * FROM `copy` WHERE C_id = '$C_id' and ISBN ='$ISBN'";
+    $result = mysqli_query($db, $book_check_query);
+    $res = mysqli_fetch_assoc($result);
+    $ISSUER = "SELECT * FROM `issuer` WHERE issuer_id = '$Issuer_id' ";
+    $result1 = mysqli_query($db, $ISSUER);
+    $res1 = mysqli_fetch_assoc($result1);
+    $copy_check_query = "SELECT * FROM `issues` WHERE C_id = '$C_id' and ISBN ='$ISBN'";
+     $resu = mysqli_query($db, $copy_check_query);
+    $resu1 = mysqli_fetch_assoc($resu);
+    if (!$resu1) {
+         array_push($errors, "NO such book  issued!!");
+    }
+    if ($Issuer_id!=$resu1['issuer_id']){
+        array_push($errors, "no such book isuued to this user!!");
+    }
+    if (!$res) {
+        array_push($errors, "no such book exists!!");
+    }
+    if (!$res1) {
+        array_push($errors, "no such issuer exists!!");
+    }
+    if (count($errors) == 0) {
+            $query1="DELETE FROM issues where ISBN='$ISBN' and C_id='$C_id'";
+            // $query= "INSERT INTO issues" . "(ISBN, issuer_id, C_id,issue_date,return_date) VALUES" . "('$ISBN', '$Issuer_id', '$C_id',now(),now()+INTERVAL 30 DAY)";
+            mysqli_query($db, $query1);
+            echo "issuer added to db";
+
+            header('location: return_books.php');
+            array_push($errors, "Hemlo");
+        
+        
+    }
+}
     
     
     // while ($row = mysqli_fetch_assoc($result)) {
