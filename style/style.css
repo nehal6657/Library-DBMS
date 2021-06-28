@@ -379,7 +379,6 @@
 .dropbtn1 a:hover{background-color: #044caa;}
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
-
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #044caa;}
 .dropbtn1:hover .dropbtn{background-color: #044caa;}
@@ -392,6 +391,10 @@
   width: 80%;
   margin: auto;
   padding: 1.3rem;
+  margin-top: 0%;
+  box-shadow: 8px 36px 48px -1px rgba(0,0,0,0.39);
+-webkit-box-shadow: 8px 36px 48px -1px rgba(0,0,0,0.39);
+-moz-box-shadow: 8px 36px 48px -1px rgba(0,0,0,0.39);
 }
 .maxw{
   max-width: 1160px;

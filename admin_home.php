@@ -89,7 +89,7 @@ $count8 = $row8['cntUser8'];
         <ul class="list-unstyled components">
 
           <li class="active">
-            <a href="#menu">Dashboard</a>
+            <a id="dash">Dashboard</a>
 
           </li>
           <li>
@@ -597,6 +597,7 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Profile').on('click', function(event) {
       jQuery('#View_deatails').toggle('show');
+      jQuery('.dashhh').toggle('hide');
     });
   });
 </script>
@@ -606,6 +607,14 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Edit_profile').on('click', function(event) {
       jQuery('#edit').toggle('show');
+      jQuery('.dashhh').toggle('hide');
+    });
+  });
+  
+  jQuery(document).ready(function() {
+    jQuery('#dash').on('click', function(event) {
+      
+      jQuery('.dashhh').toggle('show');
     });
   });
 </script>
@@ -614,6 +623,8 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Password').on('click', function(event) {
       jQuery('#Pass').toggle('show');
+
+      jQuery('.dashhh').toggle('hide');
     });
   });
 </script>
@@ -622,6 +633,8 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#hideshowbooks').on('click', function(event) {
       jQuery('#addbooks').toggle('show');
+
+      jQuery('.dashhh').toggle('hide');
     });
   });
 
@@ -629,17 +642,22 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#hsmanagebooks').on('click', function(event) {
       jQuery('#managebooks').toggle('show');
+
+      jQuery('.dashhh').toggle('hide');
     });
   });
   jQuery(document).ready(function() {
     jQuery('#hsmanagebooks1').on('click', function(event) {
       jQuery('#managebooks').toggle('show');
+
+      jQuery('.dashhh').toggle('hide');
     });
   });
   $('.Auth').hide();
   jQuery(document).ready(function() {
     jQuery('#Adding_Author').on('click', function(event) {
       jQuery('#Auth').toggle('show');
+      jQuery('.dashhh').toggle('hide');
     });
   });
 
@@ -647,12 +665,14 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Manage_auth').on('click', function(event) {
       jQuery('#manageAuth').toggle('show');
+      jQuery('.dashhh').toggle('hide');
     });
   });
   $('.del').hide();
   jQuery(document).ready(function() {
     jQuery('#deletebook').on('click', function(event) {
       jQuery('#del').toggle('show');
+      jQuery('.dashhh').toggle('hide');
     });
   });
 
@@ -660,6 +680,7 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#edit_books').on('click', function(event) {
       jQuery('#editbooks').toggle('show');
+      jQuery('.dashhh').toggle('hide');
     });
   });
 </script>
