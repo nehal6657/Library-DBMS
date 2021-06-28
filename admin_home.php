@@ -96,10 +96,11 @@ $count8 = $row8['cntUser8'];
             <div class="dropdown">
               <button class="dropbtn">Books</button>
               <div class="dropdown-content w-100">
-                <a class="dropbtn1" onclick="addBook()" id="hideshowbooks">Add Book</a>
-                <a onclick="managebooks()" id="hsmanagebooks">View Books</a>
-                <a onclick="managebooks()" id="deletebook">Delete Book</a>
-                <a onclick="managebooks()" id="edit_books">Edit Book</a>
+                <a class="dropbtn1"  id="hideshowbooks">Add Book</a>
+                <a id="add_copy">Add copies</a>
+                <a id="hsmanagebooks">View Books</a>
+                <a id="deletebook">Delete Book</a>
+                <a id="edit_books">Edit Book</a>
 
               </div>
             </div>
@@ -359,7 +360,7 @@ $count8 = $row8['cntUser8'];
                 <input type="text" placeholder="Author" name="Author"/>
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
-                <input type="text" placeholder="Copy id" name="Cid" />
+                <!-- <input type="text" placeholder="Copy id" name="Cid" /> -->
                 
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
@@ -383,6 +384,23 @@ $count8 = $row8['cntUser8'];
             </div>
           </div>
           <!--adding books end-->
+          <!--adding copies-->
+          <div class="addcopy mt-2" id="addcopy1">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2">Enter the Book details -></h2>
+              <form method='post' action='admin_home.php'>
+                <?php include('errors.php'); ?>
+                <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
+                <input type="text" placeholder="Copy id" name="Cid" />
+                
+                <br>
+                <button type="Submit" name="addcopy">create</button>
+
+              </form>
+            </div>
+          </div>
+          <!--adding copies end-->
 
           <!--editing password -->
           <div class="main_site  mt-2">
@@ -627,6 +645,14 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#hideshowbooks').on('click', function(event) {
       jQuery('#addbooks').toggle('show');
+
+      jQuery('.dashhh').toggle('hide');
+    });
+  });
+  $('.addcopy').hide();
+  jQuery(document).ready(function() {
+    jQuery('#add_copy').on('click', function(event) {
+      jQuery('.addcopy').toggle('show');
 
       jQuery('.dashhh').toggle('hide');
     });

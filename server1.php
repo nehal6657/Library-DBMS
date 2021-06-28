@@ -181,7 +181,6 @@ $ISBN = "";
 $publisher = "";
 $edition = " ";
 $Author=" ";
-$Avail=" ";
 
 
 if (isset($_POST['addBooks'])) {
@@ -191,7 +190,6 @@ if (isset($_POST['addBooks'])) {
     $publisher = mysqli_real_escape_string($db, $_POST['publisher']);
     $edition = mysqli_real_escape_string($db, $_POST['edition']);
     $Author = mysqli_real_escape_string($db, $_POST['Author']);
-    $Avail = mysqli_real_escape_string($db, $_POST['Avail']);
     $reftype =  $_POST['reftype'];
     $ttype = $_POST['ttype'];
     if (empty($title)) {
@@ -214,16 +212,64 @@ if (isset($_POST['addBooks'])) {
 
         // $query = "INSERT INTO students"." (username, name, email, Pass,type)
         // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,Avail,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$Avail','$edition', '$reftype', '$ttype')";
+        $query = "INSERT INTO book" . "(ISBN, title, Author,publisher ,edition, ref_flag, t_flag) VALUES" . "('$ISBN', '$title', '$Author','$publisher','$edition', '$reftype', '$ttype')";
         mysqli_query($db, $query);
         echo "book added to db";
-
         header('location: admin_home.php');
     }
 }
 
 /* ------------------------------end of adding books--------------------------*/
+/*--------------------------------adding copies------------------------------ */
+// initializing variables
 
+$ISBN1 = "";
+$Cid ="";
+
+
+if (isset($_POST['addcopy'])) {
+    // receive all input values from the form
+    
+    $ISBN1 = mysqli_real_escape_string($db, $_POST['ISBN']);
+    $Cid = mysqli_real_escape_string($db, $_POST['Cid']);
+    
+    if (empty($ISBN1)) {
+        array_push($errors, "Book ISBN is required");
+    }
+    if (empty($Cid)) {
+        array_push($errors, "Copyid is required");
+    }
+
+    // first check the database to make sure
+    // a book with same isbn doesnt exist
+    $user_check_query = "SELECT * FROM book WHERE ISBN='"  . $ISBN1  . "' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    if (!$user) { // if book exists
+        array_push($errors, "ISBN of (book) does not exists, first add book to database");
+    }
+
+    $user_check_query1 = "SELECT * FROM copy WHERE ISBN='"  . $ISBN1  . "' and C_id = '"  . $Cid  . "'LIMIT 1";
+    $result1 = mysqli_query($db, $user_check_query1);
+    $user1 = mysqli_fetch_assoc($result1);
+
+    if ($user1) { // if book exists
+        array_push($errors, "copy already exists!");
+    }
+    if (count($errors) == 0) {
+
+        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
+        // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
+        $query = "INSERT INTO copy" . "(ISBN, C_id,purchase_date) VALUES" . "('$ISBN1', '$Cid', now())";
+        mysqli_query($db, $query);
+        echo "book added to db";
+        header('location: admin_home.php');
+    }
+}
+
+
+/*--------------------------------end of adding copies------------------------------ */
 // <!-- -------------------------------------------login for admin------------------------------------------ -->
 if (isset($_POST['admin_loginuser'])) {
     $admin_id = mysqli_real_escape_string($db, $_POST['admin_id']);
