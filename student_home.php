@@ -67,7 +67,7 @@ $count3 = $row3['cnt1'];
 
     <div class="wrapper side1">
 
-        <div class="wrapper">
+        <!-- <div class="wrapper"> -->
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
@@ -137,8 +137,62 @@ $count3 = $row3['cnt1'];
                     </div>
                 </nav>
                 <!--==================================== navbar end=================================-->
-                <div class="main_site">
-                <!--==================================== veiw details start =================================-->
+                
+                <!-- ===============================VIEW end =======================================================-->
+
+               
+                    
+                    <!--=======================dashboard===================================-->
+          <div class="dashhh d1">
+            <div class="container maxw">
+            <div class="Sdash">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
+                            </div>
+                        </div>
+                    </div>
+              <div class="row">
+                
+                
+                <div class="col m-1.2">
+                  <div class="card s1">
+                    <div class="card-header p-0 mt-0">
+                        Books Currently issued
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title title2"></h5>
+                        <p class="black">Number of issued books:<strong><?php echo $count2; ?> </strong></p>
+                        <a href="st_is.php" class="btn btn-primary">View all books</a>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="col m-1.2">
+                  <div class="card s1">
+                        <div class="card-header p-0 mt-0">
+                            Books overdue
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">
+                            <p class="black">Number of Overdue books:<strong><?php echo $count3; ?> </strong></p>
+
+                            <a href="st_o.php" class="btn btn-primary">View all overdue Books</a>
+                        </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+          <!--=======================dashboard end===================================-->
+
+
+                    <!--==================================== veiw details start =================================-->
                     <div class="View_deatails" id="View_deatails">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -148,33 +202,21 @@ $count3 = $row3['cnt1'];
                                 <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
                                 <p> <strong>Name: </strong><?php echo $name ?></p>
                                 <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php $type1 = "";
-                                                                    if ($type == 0) {
-                                                                        echo "BTech";
-                                                                    } else if ($type == 1) {
-                                                                        echo  "MTech";
-                                                                    } else if ($type == 2) {
-                                                                        echo "PhD";
-                                                                    }
-                                                                    // echo $type 
-                                                                    ?></p>
+                                <p> <strong>Student type: </strong>
+                                <?php $type1 = "";
+                                    if ($type == 0) {
+                                        echo "BTech";
+                                    } else if ($type == 1) {
+                                        echo  "MTech";
+                                    } else if ($type == 2) {
+                                        echo "PhD";
+                                    }
+                                    // echo $type 
+                                    ?></p>
                                 <p> <strong>Email id: </strong> <?php echo $email ?></p>
                                 <p> <strong>Issuer id: </strong> <?php echo $issuer ?></p>
                             </div>
 
-                        </div>
-                    </div>
-
-                </div>
-                <!-- ===============================VIEW end =======================================================-->
-
-                <div class="main_site">
-                    <div class="Sdash">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
-                            </div>
                         </div>
                     </div>
 
@@ -246,30 +288,7 @@ $count3 = $row3['cnt1'];
 
 
 
-                    <div class="main-card">
-                        <div class="card-header p-0 mt-0">
-                            Books Currently issued
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title title2"></h5>
-                            <p class="black">Number of issued books:<strong><?php echo $count2; ?> </strong></p>
-                            <a href="st_is.php" class="btn btn-primary">View all books</a>
-                        </div>
-                    </div>
-                    <div class="main-card">
-                        <div class="card-header p-0 mt-0">
-                            Books to return
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text">
-                            <p class="black">Number of Overdue books:<strong><?php echo $count3; ?> </strong></p>
-
-                            <a href="st_o.php" class="btn btn-primary">View all overdue Books</a>
-                        </div>
-                    </div>
-
-                </div>
+                
                 <div class="View_deatails" id="View_deatails">
                     <div class="form">
                         <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -324,11 +343,8 @@ $count3 = $row3['cnt1'];
                     </div>
                 </div>
 
-            </div>
-
             <!-- ===============================editing end =======================================================-->
-            <div class="main_site">
-
+     
                 <div class="Pass" id="Pass">
                     <div class="form">
                         <img src="./style/logo.png" alt="" height="90px" width="auto" />
@@ -353,7 +369,6 @@ $count3 = $row3['cnt1'];
                     </div>
                 </div>
 
-            </div>
 
         </div>
 
@@ -393,6 +408,7 @@ $count3 = $row3['cnt1'];
     jQuery(document).ready(function() {
         jQuery('#Profile').on('click', function(event) {
             jQuery('#View_deatails').toggle('show');
+            jQuery('.dashhh').toggle('hide');
         });
     });
     $('.maindash').hide();
@@ -403,38 +419,35 @@ $count3 = $row3['cnt1'];
     jQuery(document).ready(function() {
         jQuery('#Edit_profile').on('click', function(event) {
             jQuery('#edit').toggle('show');
+            jQuery('.dashhh').toggle('hide');
         });
     });
-    $('.maindash').hide();
+    
 </script>
 <script>
     $('.Pass').hide();
     jQuery(document).ready(function() {
         jQuery('#Password').on('click', function(event) {
             jQuery('#Pass').toggle('show');
+            jQuery('.dashhh').toggle('hide');
         });
     });
-    $('.maindash').hide();
 </script>
 <script>
     $('.managebooks').hide();
     jQuery(document).ready(function() {
         jQuery('#hsmanagebooks').on('click', function(event) {
-            jQuery('#managebooks1').toggle('show');
+            jQuery('#managebooks').toggle('show');
+            jQuery('.dashhh').toggle('hide');
         });
     });
-    $('.maindash').hide();
 </script>
 <script>
-    $('.maindash').show();
+    $('.dashhh').show();
     jQuery(document).ready(function() {
         jQuery('#hsmaindash').on('click', function(event) {
-            jQuery('#maindash').toggle('show');
-            $('.managebooks').hide();
-            $('.Pass').hide();
-            $('.edit').hide();
-            $('.View_deatails').hide();
-            jQuery('#managebooks').toggle('show');
+            jQuery('.dashhh').toggle('show');
+
         });
     });
 </script>
