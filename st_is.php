@@ -1,3 +1,7 @@
+<?php
+session_start();
+$iss= '$_SESSION[iss]';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +52,7 @@
         <!-- ===============================sidebar =======================================================-->
         <div class="managebooks" id="managebooks">
             <div class="main-card">
-                <h2 id="title2" class="d-flex">Overdue Books details</h2>
+                <h2 id="title2" class="d-flex">Issued Book details</h2>
                 <table class="table table-striped table-hover ">
                     <thead>
                         <tr>
@@ -58,7 +62,7 @@
 
                             <th><strong>Issuedate :</strong></th>
                             <th><strong>Return date:</strong></th>
-                            <th><strong>Overdue days:</strong></th>
+                            <th><strong>Type:</strong></th>
 
 
                         </tr>
@@ -68,22 +72,21 @@
                     // if (!$db) {
                     //   die('Could not connect: ' . mysql_error());
                     // }
-                    $sql_query = "select * from issues  WHERE return_date < now() ";
-                    $result = mysqli_query($db, $sql_query);
+                    $sql_query = "select * from issues NATURAL JOIN issuer  WHERE return_date > now() and issuer_id='$iss' ";
+                    $result = mysqli_query($db, $sql_query) ;
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr>";
                         echo "<td>" . $row['issuer_id'] . "</td>";
                         echo "<td>" . $row['ISBN'] . "</td>";
                         echo "<td>" . $row['C_id'] . "</td>";
-                        $r=$row['issue_date'];
-                        $i= $row['return_date'];
-                        $sql = "SELECT  DATEDIFF('$i', '$r') asc cnt ";
-                        $ro = mysqli_fetch_array(mysqli_query($db, $sql));
-                        $d=$ro['cnt'];
+
                         echo "<td>" . $row['issue_date'] . "</td>";
                         echo "<td>" . $row['return_date'] . "</td>";
-                        
-                        echo "<td>" . $d . "</td>";
+                        if ($row['Sid'] == 0) {
+                            echo "<td> Instructor </td>";
+                        } else {
+                            echo "<td> Student </td>";
+                        }
 
                         echo "</tr>";
                     }

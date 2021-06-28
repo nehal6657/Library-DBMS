@@ -1,3 +1,7 @@
+<?php
+session_start();
+$iss1 =$_SESSION['iss'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="icon" href="./style/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <title>Admin</title>
+    <title>overdue books</title>
 </head>
 
 <body>
@@ -31,7 +35,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="admin_home.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="student_home.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>
@@ -48,7 +52,7 @@
         <!-- ===============================sidebar =======================================================-->
         <div class="managebooks" id="managebooks">
             <div class="main-card">
-                <h2 id="title2" class="d-flex">Overdue Books details</h2>
+                <h2 id="title2" class="d-flex">Issued Book details</h2>
                 <table class="table table-striped table-hover ">
                     <thead>
                         <tr>
@@ -58,7 +62,7 @@
 
                             <th><strong>Issuedate :</strong></th>
                             <th><strong>Return date:</strong></th>
-                            <th><strong>Overdue days:</strong></th>
+                            
 
 
                         </tr>
@@ -68,23 +72,17 @@
                     // if (!$db) {
                     //   die('Could not connect: ' . mysql_error());
                     // }
-                    $sql_query = "select * from issues  WHERE return_date < now() ";
-                    $result = mysqli_query($db, $sql_query);
-                    while ($row = mysqli_fetch_array($result)) {
+                    $sql_query1 = " select * from issues   WHERE return_date < now() and issuer_id=$iss1  ";
+                    $result1 = mysqli_query($db, $sql_query1);
+                    while ($row1 = mysqli_fetch_array($result1)) {
                         echo "<tr>";
-                        echo "<td>" . $row['issuer_id'] . "</td>";
-                        echo "<td>" . $row['ISBN'] . "</td>";
-                        echo "<td>" . $row['C_id'] . "</td>";
-                        $r=$row['issue_date'];
-                        $i= $row['return_date'];
-                        $sql = "SELECT  DATEDIFF('$i', '$r') asc cnt ";
-                        $ro = mysqli_fetch_array(mysqli_query($db, $sql));
-                        $d=$ro['cnt'];
-                        echo "<td>" . $row['issue_date'] . "</td>";
-                        echo "<td>" . $row['return_date'] . "</td>";
-                        
-                        echo "<td>" . $d . "</td>";
+                        echo "<td>" . $row1['issuer_id'] . "</td>";
+                        echo "<td>" . $row1['ISBN'] . "</td>";
+                        echo "<td>" . $row1['C_id'] . "</td>";
 
+                        echo "<td>" . $row1['issue_date'] . "</td>";
+                        echo "<td>" . $row1['return_date'] . "</td>";
+                        
                         echo "</tr>";
                     }
                     mysqli_close($db);
