@@ -40,10 +40,10 @@ $co = $ro['cnt'];
 $sql1 = "select count(*) as cnt1 from issuer NATURAL JOIN issues WHERE return_date < now() and Sid=0";
 $ro1 = mysqli_fetch_array(mysqli_query($db, $sql1));
 $co1 = $ro1['cnt1'];
-$sql2 = "select count(*) as cnt2 from issuer NATURAL JOIN issues WHERE return_date > now() and Sid>0";
+$sql2 = "select count(*) as cnt2 from issuer NATURAL JOIN issues WHERE  Sid>0";
 $ro2 = mysqli_fetch_array(mysqli_query($db, $sql2));
 $co2 = $ro2['cnt2'];
-$sql3 = "select count(*) as cnt3 from issuer NATURAL JOIN issues WHERE return_date < now() and Sid=0";
+$sql3 = "select count(*) as cnt3 from issuer NATURAL JOIN issues WHERE  Sid=0";
 $ro3 = mysqli_fetch_array(mysqli_query($db, $sql3));
 $co3 = $ro3['cnt3'];
 $sql_query8 = "select count(*) as cntUser8 from copy";
@@ -270,10 +270,10 @@ $count8 = $row8['cntUser8'];
             </div>
             <div class="btq1 d-flex justify-content-center">
               <form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1" data-inline="true">Issue Books</button></form>
-
+              <form action="return_books.php" method="post"><button type="submit" class="btn btn-primary s2 ml-2" name="issuebooks1" data-inline="true">Return Book</button></form>
 
             </div>
-
+            
           </div>
           <!--=======================dashboard end===================================-->
 
@@ -604,10 +604,10 @@ $count8 = $row8['cntUser8'];
       jQuery('.dashhh').toggle('hide');
     });
   });
-  
+
   jQuery(document).ready(function() {
     jQuery('#dash').on('click', function(event) {
-      
+
       jQuery('.dashhh').toggle('show');
     });
   });
