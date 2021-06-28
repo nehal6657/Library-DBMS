@@ -22,8 +22,8 @@ $iss1 =$_SESSION['iss'];
 
 
     <!-- Page Content Holder -->
-
-    <div id="content">
+<!-- 
+    <div id="content"> -->
 
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
@@ -89,5 +89,7 @@ $iss1 =$_SESSION['iss'];
 
                     ?>
                 </table>
+                <div class="btq1 d-flex justify-content-center pb-0 mb-0"><a href="student_home.php"><button type="submit" class="btn btn-primary s2">Go Back</button></a></div>
+                   
             </div>
-        </div>
+        <!-- </div> -->

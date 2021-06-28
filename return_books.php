@@ -65,29 +65,15 @@ include('issue.php');
                                 
                                 <input type="text" placeholder="ISBN number:" name="ISBN" />
                                 <input type="number" placeholder="Copy id:" name="Copyid" />
-                                <!-- <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes   <input type="radio" name="Avail" value="1" checked></label><br>
-                  <label class="radio-inline"> No    <input type="radio" name="Avail" value="0"></label>
-
-                </div> -->
                                 <input type="number" placeholder="Issuer id:" name="Issuerid" />
-                                <!-- <p class="text-left"> <strong><b>Type of issuer:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Student - BTech<input type="radio" name="type" value="0" checked></label><br>
-                  <label class="radio-inline"> Student - MTech <input type="radio" name="type" value="1"></label><br>
-                  <label class="radio-inline"> Student - PhD <input type="radio" name="type" value="2"></label><br>
-                  <label class="radio-inline"> instructor <input type="radio" name="type" value="3"></label><br>
-
-
-                </div>  -->
                                 <br>
 
                                 <button type="Submit" name="returnBooks">Return</button>
 
                             </form>
+                            <br>
+                            <div class="btq1 d-flex justify-content-center pb-0 mb-0"><a href="admin_home.php"><button type="submit" class="btn btn-primary s2">Go Back</button></a></div>
+
                         </div>
 
                     </div>

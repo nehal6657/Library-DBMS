@@ -152,28 +152,7 @@ if (isset($_POST['change'])) {
 //         header('location: admin_home.php');
 //     }
 // }
-/*------------------------------deleting books to the database--------------- */
 
-$ISBN1=" ";
-if (isset($_POST['del'])) {
-    $ISBN1 =$_POST['ISBN1'];
-    if (empty($ISBN1)) {
-        array_push($errors, "ISBN is required");
-
-    }
-    if (count($errors) == 0) {
-
-        // $query = "INSERT INTO students"." (username, name, email, Pass,type)
-        // 	  VALUES"."('$username','$name', '$email', '$password','$type')";
-        $sql = "DELETE FROM book where ISBN=' " . $ISBN1 . " '";
-        $query =
-
-        mysqli_query($db, $sql);
-        echo "book added to db";
-        array_push($errors, $ISBN1);
-        header('location: admin_home.php');
-    }
-}
 /*------------------------------adding books to the database--------------- */
 // initializing variables
 $title = "";
