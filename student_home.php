@@ -124,7 +124,7 @@ $count3 = $row3['cnt1'];
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="student_home.php">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>
@@ -146,12 +146,183 @@ $count3 = $row3['cnt1'];
           <div class="dashhh d1">
             <div class="container maxw">
             <div class="Sdash">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Quick Search for books" aria-describedby="basic-addon2" />
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
-                            </div>
-                        </div>
+                        
+                        <form action="" method="post">
+                        <input type="text" class="form-control" placeholder="Search by book author" name="search" aria-label="Quick Search for books" aria-describedby="basic-addon2" /><input type="submit" name="submit" value="Search">
+                        </form>
+                        <table class="table table-striped table-hover ">
+                        <style> 
+                        input[type=button], input[type=submit], input[type=reset] {
+                        background-color: #3366ff;
+                        border: none;
+                        border-radius: 0.8rem;
+                        color: white;
+                        text-decoration: none;
+                        margin: 4px 2px;
+                        cursor: pointer;
+                        }
+                        </style>
+                        
+                        <?php
+
+
+                        if (isset($_POST['submit'])) {
+                            $searchValue = $_POST['search'];
+                            $con = new mysqli("localhost", "root", "", "lib");
+                            if ($con->connect_error) {
+                                echo "connection Failed: " . $con->connect_error;
+                            } else {
+                            $db = mysqli_connect("localhost", "root", "", "lib");
+                            // if (!$db) {
+                            //   die('Could not connect: ' . mysql_error());
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<td>" . "ISBN" . "</td>";
+                            echo "<td>" . "title" . "</td>";
+
+                            echo "<td>" . "Author" . "</td>";
+                            echo "<td>" . "Total copy". "</td>";
+                            echo "<td>" . "Avalaible copy" . "</td>";
+
+                            echo "<td>" . "publisher" . "</td>";
+                            echo "<td>" . "edition" . "</td>";
+                            echo "<td>" . "is a refrence book" . "</td>";
+                            echo "<td>" . "is a text book" . "</td>";
+ 
+                            
+                            echo "</thead>";
+                            // }
+                            $sql_query = "SELECT * FROM book WHERE LOWER(title) or LOWER(Author) LIKE LOWER('%$searchValue%')";
+                            $result = mysqli_query($db, $sql_query);
+                            while ($row = mysqli_fetch_array($result)) {
+                            $g = $row['ISBN'];
+                            $sql = "select count(*) as val from book NATURAL JOIN copy WHERE ISBN = '$g'";
+                            $rw1 = mysqli_fetch_array(mysqli_query($db, $sql));
+                            $cn1 = $rw1['val'];
+                            $sq2 = "select count(*) as val1 from book NATURAL JOIN issues WHERE ISBN = '$g'";
+                            $rw2 = mysqli_fetch_array(mysqli_query($db, $sq2));
+                            $cn2 = $rw2['val1'];
+                            $a = $cn1 - $cn2;
+
+                            echo "<tr>";
+                            echo "<td>" . $row['ISBN'] . "</td>";
+                            echo "<td>" . $row['title'] . "</td>";
+
+                            echo "<td>" . $row['Author'] . "</td>";
+                            echo "<td>" . $cn1 . "</td>";
+                            echo "<td>" . $a . "</td>";
+
+                            echo "<td>" . $row['publisher'] . "</td>";
+                            echo "<td>" . $row['edition'] . "</td>";
+
+                            if ($row['ref_flag'] == 1) {
+                                echo "<td> Yes </td>";
+                            } else {
+                                echo "<td> No </td>";
+                            }
+                            if ($row['t_flag'] == 1) {
+                                echo "<td> Yes </td>";
+                            } else {
+                                echo "<td> No </td>";
+                            }
+
+                            echo "</tr>";
+                            }
+                            mysqli_close($db);
+
+                        
+                        
+                              
+                            }   
+                        }
+                        
+                        
+                        
+                        ?>
+                        </table>
+
+                        <form action="" method="post">
+                        <input type="text" class="form-control" placeholder="Search by book author" name="search1" aria-label="Quick Search for books" aria-describedby="basic-addon2" /><input type="submit" name="submit1" value="Search">
+                        </form>
+                        <table class="table table-striped table-hover ">
+                        
+                        <?php
+
+
+                        if (isset($_POST['submit1'])) {
+                            $searchValue = $_POST['search1'];
+                            $con = new mysqli("localhost", "root", "", "lib");
+                            if ($con->connect_error) {
+                                echo "connection Failed: " . $con->connect_error;
+                            } else {
+                            $db = mysqli_connect("localhost", "root", "", "lib");
+                            // if (!$db) {
+                            //   die('Could not connect: ' . mysql_error());
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<td>" . "ISBN" . "</td>";
+                            echo "<td>" . "title" . "</td>";
+
+                            echo "<td>" . "Author" . "</td>";
+                            echo "<td>" . "Total copy". "</td>";
+                            echo "<td>" . "Avalaible copy" . "</td>";
+
+                            echo "<td>" . "publisher" . "</td>";
+                            echo "<td>" . "edition" . "</td>";
+                            echo "<td>" . "is a refrence book" . "</td>";
+                            echo "<td>" . "is a text book" . "</td>";
+ 
+                            
+                            echo "</thead>";
+                            // }
+                            $sql_query = "SELECT * FROM book WHERE LOWER(title) LIKE LOWER('%$searchValue%')";
+                            $result = mysqli_query($db, $sql_query);
+                            while ($row = mysqli_fetch_array($result)) {
+                            $g = $row['ISBN'];
+                            $sql = "select count(*) as val from book NATURAL JOIN copy WHERE ISBN = '$g'";
+                            $rw1 = mysqli_fetch_array(mysqli_query($db, $sql));
+                            $cn1 = $rw1['val'];
+                            $sq2 = "select count(*) as val1 from book NATURAL JOIN issues WHERE ISBN = '$g'";
+                            $rw2 = mysqli_fetch_array(mysqli_query($db, $sq2));
+                            $cn2 = $rw2['val1'];
+                            $a = $cn1 - $cn2;
+
+                            echo "<tr>";
+                            echo "<td>" . $row['ISBN'] . "</td>";
+                            echo "<td>" . $row['title'] . "</td>";
+
+                            echo "<td>" . $row['Author'] . "</td>";
+                            echo "<td>" . $cn1 . "</td>";
+                            echo "<td>" . $a . "</td>";
+
+                            echo "<td>" . $row['publisher'] . "</td>";
+                            echo "<td>" . $row['edition'] . "</td>";
+
+                            if ($row['ref_flag'] == 1) {
+                                echo "<td> Yes </td>";
+                            } else {
+                                echo "<td> No </td>";
+                            }
+                            if ($row['t_flag'] == 1) {
+                                echo "<td> Yes </td>";
+                            } else {
+                                echo "<td> No </td>";
+                            }
+
+                            echo "</tr>";
+                            }
+                            mysqli_close($db);
+
+                        
+                        
+                              
+                            }   
+                        }
+                        
+                        
+                        
+                        ?>
+                        </table>
                     </div>
               <div class="row">
                 
