@@ -4,9 +4,7 @@ session_start();
 
 
 $_SESSION['conn'] = "";
-$admin_id = $_SESSION['admin_id'];
-
-
+$admin_id = "";
 $errors = array();
 
 // connect to the database
