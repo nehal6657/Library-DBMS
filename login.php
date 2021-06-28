@@ -25,7 +25,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_login.php">Login as admin</a>
+            <a class="nav-link" href="admin_login.php">Login as Admin</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="register.php">Register</a>
