@@ -32,8 +32,16 @@ $query_run1 = mysqli_query($db, $query1);
 while ($row = mysqli_fetch_assoc($query_run1)) {
     $issuer = $row['issuer_id'];
 }
-?>
+$_SESSION['iss'] = $issuer; // Setting sid for session variable
 
+$query2 = "select count(*) as cnt from issues NATURAL JOIN issuer where issuer_id='$issuer'";
+$row2 = mysqli_fetch_array(mysqli_query($db, $query2));
+$count2 = $row2['cnt'];
+
+$query3 = "select count(*) as cnt1 from issues NATURAL JOIN issuer where issuer_id='$issuer' and return_date<now()";
+$row3 = mysqli_fetch_array(mysqli_query($db, $query3));
+$count3 = $row3['cnt1'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -166,174 +174,189 @@ while ($row = mysqli_fetch_assoc($query_run1)) {
                                 <button class="btn btn-outline-secondary" type="button"><img src="./style/search.png" alt="" height="22px" width="auto" /></button>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="managebooks" id="managebooks">
-                            <div class="main-card">
-                                <h2 id="title2" class="d-flex">Books present in library</h2>
-                                <table class="table table-striped table-hover ">
-                                    <thead>
-                                        <tr>
-                                            <th><strong>ISBN</strong></th>
-                                            <th><strong>Title</strong></th>
-                                            <th><strong>Author</strong></th>
-                                            <th><strong>Availability</strong></th>
-                                            <th><strong>Publisher</strong></th>
-                                            <th><strong>Edition</strong></th>
-                                            <th><strong>Is refrence book?</strong></th>
-                                            <th><strong>Is text book?</strong></th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                    $db = mysqli_connect("localhost", "root", "", "lib");
+                    <div class="managebooks" id="managebooks">
+                        <div class="main-card">
+                            <h2 id="title2" class="d-flex">Books present in library</h2>
+                            <table class="table table-striped table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th><strong>ISBN</strong></th>
+                                        <th><strong>Title</strong></th>
+                                        <th><strong>Author</strong></th>
+                                        <th><strong>Total Copy</strong></th>
+                                        <th><strong>Available Copy</strong></th>
+                                        <th><strong>Publisher</strong></th>
+                                        <th><strong>Edition</strong></th>
+                                        <th><strong>Is refrence book?</strong></th>
+                                        <th><strong>Is text book?</strong></th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $db = mysqli_connect("localhost", "root", "", "lib");
+                                // if (!$db) {
+                                //   die('Could not connect: ' . mysql_error());
+                                // }
+                                $sql_query = "select * from book";
+                                $result = mysqli_query($db, $sql_query);
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $g = $row['ISBN'];
+                                    $sql = "select count(*) as val from book NATURAL JOIN copy WHERE ISBN = '$g'";
+                                    $rw1 = mysqli_fetch_array(mysqli_query($db, $sql));
+                                    $cn1 = $rw1['val'];
+                                    $sq2 = "select count(*) as val1 from book NATURAL JOIN issues WHERE ISBN = '$g'";
+                                    $rw2 = mysqli_fetch_array(mysqli_query($db, $sq2));
+                                    $cn2 = $rw2['val1'];
+                                    $a = $cn1 - $cn2;
 
-                                    $sql_query = "select * from book";
-                                    $result = mysqli_query($db, $sql_query);
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row['ISBN'] . "</td>";
-                                        echo "<td>" . $row['title'] . "</td>";
-                                        echo "<td>" . $row['Author'] . "</td>";
-                                        if ($row['Avail'] == 1) {
-                                            echo "<td> Yes </td>";
-                                        } else {
-                                            echo "<td> No </td>";
-                                        }
-                                        echo "<td>" . $row['publisher'] . "</td>";
-                                        echo "<td>" . $row['edition'] . "</td>";
-                                        if ($row['ref_flag'] == 1) {
-                                            echo "<td> Yes </td>";
-                                        } else {
-                                            echo "<td> No </td>";
-                                        }
-                                        if ($row['t_flag'] == 1) {
-                                            echo "<td> Yes </td>";
-                                        } else {
-                                            echo "<td> No </td>";
-                                        }
+                                    echo "<tr>";
+                                    echo "<td>" . $row['ISBN'] . "</td>";
+                                    echo "<td>" . $row['title'] . "</td>";
 
-                                        echo "</tr>";
+                                    echo "<td>" . $row['Author'] . "</td>";
+                                    echo "<td>" . $cn1 . "</td>";
+                                    echo "<td>" . $a . "</td>";
+
+                                    echo "<td>" . $row['publisher'] . "</td>";
+                                    echo "<td>" . $row['edition'] . "</td>";
+
+                                    if ($row['ref_flag'] == 1) {
+                                        echo "<td> Yes </td>";
+                                    } else {
+                                        echo "<td> No </td>";
                                     }
-                                    mysqli_close($db);
+                                    if ($row['t_flag'] == 1) {
+                                        echo "<td> Yes </td>";
+                                    } else {
+                                        echo "<td> No </td>";
+                                    }
 
-                                    ?>
-                                </table>
-                            </div>
-                        </div>
+                                    echo "</tr>";
+                                }
+                                mysqli_close($db);
 
-
-
-
-                        <div class="main-card">
-                            <div class="card-header p-0 mt-0">
-                                Books Currently issued
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title title2"></h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="main-card">
-                            <div class="card-header p-0 mt-0">
-                                Books to return
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="View_deatails" id="View_deatails">
-                        <div class="form">
-                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                            <h2 id="title2 text-center">Your details </h2>
-                            <div class="details text-left">
-
-                                <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
-                                <p> <strong>Name: </strong><?php echo $name ?></p>
-                                <p> <strong>User Name: </strong><?php echo $username ?></p>
-                                <p> <strong>Student type: </strong><?php
-                                                                    $type1 = "";
-                                                                    if ($type === 0) {
-                                                                        $type1 = "BTech";
-                                                                    } else if ($type === 1) {
-                                                                        $type1 = "MTech";
-                                                                    } else if ($type === 2) {
-                                                                        $type1 = "PhD";
-                                                                    }
-                                                                    echo $type1 ?></p>
-                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
-                                <p> <strong>Email id: </strong> <?php echo $email ?></p>
-                            </div>
-
+                                ?>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="edit" id="edit">
-                        <div class="form">
-                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                            <h2 id="title2 text-center">Enter the following details to update profile</h2>
-                            <div class="details text-left">
 
-                                <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
-                                <form method='post' action='student_home.php'>
-                                    <?php include('errors.php'); ?>
-                                    <label>username</label>
-                                    <input type="text" name="Username" />
-                                    <label>Name</label>
-                                    <input type="text" name="Name" />
-                                    <label>Email</label>
-                                    <input type="text" name="email" />
 
-                                    <label> Type of student:</label><br>
-                                    <label class="radio-inline">BTech <input type="radio" name="type" value="0" checked></label>
-                                    <label class="radio-inline">MTech <input type="radio" name="type" value="1"></label>
-                                    <label class="radio-inline">PhD. <input type="radio" name="type" value="2"></label>
-                                    <br>
-                                    <button type="Submit" name="update">Edit</button>
-                            </div>
 
-                            </form>
+                    <div class="main-card">
+                        <div class="card-header p-0 mt-0">
+                            Books Currently issued
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title title2"></h5>
+                            <p class="black">Number of issued books:<strong><?php echo $count2; ?> </strong></p>
+                            <a href="st_is.php" class="btn btn-primary">View all books</a>
+                        </div>
+                    </div>
+                    <div class="main-card">
+                        <div class="card-header p-0 mt-0">
+                            Books to return
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">
+                            <p class="black">Number of Overdue books:<strong><?php echo $count3; ?> </strong></p>
+
+                            <a href="st_o.php" class="btn btn-primary">View all overdue Books</a>
                         </div>
                     </div>
 
                 </div>
+                <div class="View_deatails" id="View_deatails">
+                    <div class="form">
+                        <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                        <h2 id="title2 text-center">Your details </h2>
+                        <div class="details text-left">
 
-                <!-- ===============================editing end =======================================================-->
-                <div class="main_site">
-
-                    <div class="Pass" id="Pass">
-                        <div class="form">
-                            <img src="./style/logo.png" alt="" height="90px" width="auto" />
-                            <h2 id="title2 text-center">Change Password</h2>
-                            <div class="details text-left">
-
-                                <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
-                                <form method='post' action='student_home.php'>
-                                    <?php include('errors.php'); ?>
-                                    <label>Old Password</label>
-                                    <input type="text" name="old" />
-                                    <label>New Password</label>
-                                    <input type="text" name="New" />
-                                    <label>Confirm password</label>
-                                    <input type="text" name="New1" />
-
-
-                                    <button type="Submit" name="change">change</button>
-                            </div>
-
-                            </form>
+                            <p> <strong>Student Id: </strong><?php echo $Sid ?></p>
+                            <p> <strong>Name: </strong><?php echo $name ?></p>
+                            <p> <strong>User Name: </strong><?php echo $username ?></p>
+                            <p> <strong>Student type: </strong><?php
+                                                                $type1 = "";
+                                                                if ($type === 0) {
+                                                                    $type1 = "BTech";
+                                                                } else if ($type === 1) {
+                                                                    $type1 = "MTech";
+                                                                } else if ($type === 2) {
+                                                                    $type1 = "PhD";
+                                                                }
+                                                                echo $type1 ?></p>
+                            <p> <strong>Email id: </strong> <?php echo $email ?></p>
+                            <p> <strong>Email id: </strong> <?php echo $email ?></p>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+
+                <div class="edit" id="edit">
+                    <div class="form">
+                        <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                        <h2 id="title2 text-center">Enter the following details to update profile</h2>
+                        <div class="details text-left">
+
+                            <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
+                            <form method='post' action='student_home.php'>
+                                <?php include('errors.php'); ?>
+                                <label>username</label>
+                                <input type="text" name="Username" />
+                                <label>Name</label>
+                                <input type="text" name="Name" />
+                                <label>Email</label>
+                                <input type="text" name="email" />
+
+                                <label> Type of student:</label><br>
+                                <label class="radio-inline">BTech <input type="radio" name="type" value="0" checked></label>
+                                <label class="radio-inline">MTech <input type="radio" name="type" value="1"></label>
+                                <label class="radio-inline">PhD. <input type="radio" name="type" value="2"></label>
+                                <br>
+                                <button type="Submit" name="update">Edit</button>
+                        </div>
+
+                        </form>
+                    </div>
                 </div>
 
             </div>
 
+            <!-- ===============================editing end =======================================================-->
+            <div class="main_site">
+
+                <div class="Pass" id="Pass">
+                    <div class="form">
+                        <img src="./style/logo.png" alt="" height="90px" width="auto" />
+                        <h2 id="title2 text-center">Change Password</h2>
+                        <div class="details text-left">
+
+                            <p> <strong>Your Student Id: </strong><?php echo $Sid ?></p>
+                            <form method='post' action='student_home.php'>
+                                <?php include('errors.php'); ?>
+                                <label>Old Password</label>
+                                <input type="text" name="old" />
+                                <label>New Password</label>
+                                <input type="text" name="New" />
+                                <label>Confirm password</label>
+                                <input type="text" name="New1" />
+
+
+                                <button type="Submit" name="change">change</button>
+                        </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
+
+
+    </div>
 
 
 </body>
