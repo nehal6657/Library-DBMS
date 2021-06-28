@@ -64,8 +64,7 @@ if (isset($_POST['change'])) {
         
     }
 
-    if (count($errors) == 0
-    ) {
+    if (count($errors) == 0 ) {
         // $pswd = md5($user_pswd);
         // $query = "SELECT * FROM users WHERE user_Fname='$user_Fname' AND user_pswd='$user_pswd'";
         // $results = mysqli_query($db, $query);
@@ -87,3 +86,4 @@ if (isset($_POST['change'])) {
         }
     }
 }
+/*---------------------search by author---------------------------------------------------- */

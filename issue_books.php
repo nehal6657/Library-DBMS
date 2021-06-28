@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_assoc($query_run)) {
   <link rel="stylesheet" href="./style/style.css">
   <link rel="icon" href="./style/logo.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  <title>Admin</title>
+  <title>Admin Issue Books</title>
 </head>
 
 <body>
