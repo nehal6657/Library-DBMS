@@ -32,7 +32,6 @@ include('issue.php');
             <!-- Page Content Holder -->
 
 
-
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
                 <img src="./style/logo.png" alt="logo">
                 <h3 id="title3">Library Management System</h3>
@@ -59,39 +58,31 @@ include('issue.php');
                     <div class="form w-85 f1">
                         <img src="./style/logo.png" alt="" height="90px" width="auto" />
                         <h2 id="title2 " class="text-center" style="font-size:x-large">Enter the following details </h2>
-                        <form method='post' action='return_books.php'>
+                        <form method='post' action='issue_books.php'>
                             <?php include('errors.php'); ?>
                             <br>
 
                             <input type="text" placeholder="ISBN number:" name="ISBN" />
                             <input type="number" placeholder="Copy id:" name="Copyid" />
-                            <!-- <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes   <input type="radio" name="Avail" value="1" checked></label><br>
-                  <label class="radio-inline"> No    <input type="radio" name="Avail" value="0"></label>
-
-                </div> -->
                             <input type="number" placeholder="Issuer id:" name="Issuerid" />
-                            <!-- <p class="text-left"> <strong><b>Type of issuer:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Student - BTech<input type="radio" name="type" value="0" checked></label><br>
-                  <label class="radio-inline"> Student - MTech <input type="radio" name="type" value="1"></label><br>
-                  <label class="radio-inline"> Student - PhD <input type="radio" name="type" value="2"></label><br>
-                  <label class="radio-inline"> instructor <input type="radio" name="type" value="3"></label><br>
-
-
-                </div>  -->
                             <br>
 
                             <button type="Submit" name="returnBooks">Return</button>
-        
+
                         </form>
+                        <br>
+                        <div class="btq1 d-flex justify-content-center pb-0 mb-0"><a href="admin_home.php"><button type="submit" class="btn btn-primary s2">Go Back</button></a></div>
+
                     </div>
-                    
+                   
+
+                    <button type="Submit" name="returnBooks">Return</button>
+
+                    </form>
                 </div>
 
             </div>
+
         </div>
+    </div>
     </div>

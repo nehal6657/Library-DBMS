@@ -99,7 +99,6 @@ $count8 = $row8['cntUser8'];
                 <a class="dropbtn1"  id="hideshowbooks">Add Book</a>
                 <a id="add_copy">Add copies</a>
                 <a id="hsmanagebooks">View Books</a>
-                <a id="deletebook">Delete Book</a>
                 <a id="edit_books">Edit Book</a>
 
               </div>
@@ -464,18 +463,11 @@ $count8 = $row8['cntUser8'];
                 <?php include('errors.php'); ?>
                 <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
-                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
-                <input type="text" placeholder="Copy id" name="Cid" />
-
+                <input type="text" placeholder="Author" name="Author" />
+                
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
-                <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="Avail" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="Avail" value="0"></label>
-
-                </div>
+                
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -521,19 +513,7 @@ $count8 = $row8['cntUser8'];
 
 
         <!--------------------------------------------------viewing profile---------------------------------------------->
-        <div class="del  mt-2" id="del">
-          <div class="form">
-            <img src="./style/logo.png" alt="" height="90px" width="auto" />
-            <h2 id="title2">Enter the ISBN Number -></h2>
-            <form method='post' action='admin_home.php'>
-              <?php include('errors.php'); ?>
-              <input type="text" placeholder="ISBN Number" name="ISBN1" value="<?php echo $ISBN1; ?>" />
 
-              <button type="Submit" name="del">Delete</button>
-
-            </form>
-          </div>
-        </div>
         <!--Manage  books -->
         <div class="manageAuth" id="manageAuth">
           <div class="main-card">
@@ -685,13 +665,6 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Manage_auth').on('click', function(event) {
       jQuery('#manageAuth').toggle('show');
-      jQuery('.dashhh').toggle('hide');
-    });
-  });
-  $('.del').hide();
-  jQuery(document).ready(function() {
-    jQuery('#deletebook').on('click', function(event) {
-      jQuery('#del').toggle('show');
       jQuery('.dashhh').toggle('hide');
     });
   });

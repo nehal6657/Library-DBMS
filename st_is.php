@@ -1,6 +1,6 @@
 <?php
 session_start();
-$iss= '$_SESSION[iss]';
+$iss= $_SESSION['iss'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@ $iss= '$_SESSION[iss]';
 
     <!-- Page Content Holder -->
 
-    <div id="content">
+    <!-- <div id="content"> -->
 
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
@@ -72,7 +72,7 @@ $iss= '$_SESSION[iss]';
                     // if (!$db) {
                     //   die('Could not connect: ' . mysql_error());
                     // }
-                    $sql_query = "select * from issues NATURAL JOIN issuer  WHERE return_date > now() and issuer_id='$iss' ";
+                    $sql_query = "select * from issues NATURAL JOIN issuer  WHERE issuer_id='$iss' ";
                     $result = mysqli_query($db, $sql_query) ;
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr>";
@@ -94,5 +94,7 @@ $iss= '$_SESSION[iss]';
 
                     ?>
                 </table>
+                <div class="btq1 d-flex justify-content-center pb-0 mb-0"><a href="student_home.php"><button type="submit" class="btn btn-primary s2">Go Back</button></a></div>
+                   
             </div>
-        </div>
+        <!-- </div> -->
