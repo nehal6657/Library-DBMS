@@ -198,7 +198,7 @@ $count8 = $row8['cntUser8'];
                     </div>
                     <div class="card-body">
                       <h4 class="card-text">
-                        <p>
+                        <p class="black">
                           Total Number of Different Books:<strong><?php echo $count5; ?> </strong>
                           <br>
                           Total Number of Books in Library:<strong><?php echo $count8; ?> </strong>
@@ -220,7 +220,7 @@ $count8 = $row8['cntUser8'];
                     </div>
                     <div class="card-body">
                       <h4 class="card-text">
-                        <p>
+                        <p class="black">
                           Number of students:<strong><?php echo $co; ?> </strong>
                           <br>
                           Number of instructors:<strong><?php echo $co1; ?> </strong>
@@ -248,7 +248,7 @@ $count8 = $row8['cntUser8'];
                     <div class="card-body">
 
                       <h5 class="card-text">
-                        <p>
+                        <p class="black">
                           Number of students:<strong><?php echo $co2; ?> </strong>
                           <br>
                           Number of instructors:<strong><?php echo $co3; ?> </strong>
@@ -269,8 +269,11 @@ $count8 = $row8['cntUser8'];
               </div>
             </div>
             <div class="btq1 d-flex justify-content-center">
-              <form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1">Issue Books</button></form>
+              <form action="issue_books.php" method="post"><button type="submit" class="btn btn-primary s2" name="issuebooks1" data-inline="true">Issue Books</button></form>
+
+
             </div>
+
           </div>
           <!--=======================dashboard end===================================-->
 
@@ -307,7 +310,7 @@ $count8 = $row8['cntUser8'];
                   $sq2 = "select count(*) as val1 from book NATURAL JOIN issues WHERE ISBN = '$g'";
                   $rw2 = mysqli_fetch_array(mysqli_query($db, $sq2));
                   $cn2 = $rw2['val1'];
-                  $a=$cn1-$cn2;
+                  $a = $cn1 - $cn2;
 
                   echo "<tr>";
                   echo "<td>" . $row['ISBN'] . "</td>";
