@@ -116,10 +116,10 @@ $count8 = $row8['cntUser8'];
           </li>
           <li>
             <div class="dropdown">
-              <button class="dropbtn">My Prrofile</button>
+              <button class="dropbtn">My Profile</button>
               <div class="dropdown-content w-100">
 
-                <a class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</a>
+                <a class="dropbtn1" onclick="addBook()" id="Profile">View Profile</a>
                 <a class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</a>
                 <a class="dropbtn1" onclick="addBook()" id="Password">Change Password</a>
 
@@ -127,7 +127,7 @@ $count8 = $row8['cntUser8'];
             </div>
           </li>
           <li>
-            <a href="inform.php">Information</a>
+            <a href="index.php">Information</a>
           </li>
 
 
@@ -152,7 +152,7 @@ $count8 = $row8['cntUser8'];
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="index.php">Features</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="admin_logout.php">Log Out</a>
@@ -356,17 +356,11 @@ $count8 = $row8['cntUser8'];
                 <?php include('errors.php'); ?>
                 <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
-                <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
-
+                <input type="text" placeholder="Author" name="Author"/>
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
-                <p class="text-left"> <strong><b>Is Book Available:</b></strong></p>
-                <div class="text-left">
-
-                  <label class="radio-inline"> Yes <input type="radio" name="Avail" value="1" checked></label>
-                  <label class="radio-inline"> No <input type="radio" name="Avail" value="0"></label>
-
-                </div>
+                <input type="text" placeholder="Copy id" name="Cid" />
+                
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -453,7 +447,7 @@ $count8 = $row8['cntUser8'];
                 <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
                 <input type="text" placeholder="Ex" name="Author" value="<?php echo $Author; ?>" />
-
+                <input type="text" placeholder="Copy id" name="Cid" />
 
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
