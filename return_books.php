@@ -58,7 +58,7 @@ include('issue.php');
                     <div class="form w-85 f1">
                         <img src="./style/logo.png" alt="" height="90px" width="auto" />
                         <h2 id="title2 " class="text-center" style="font-size:x-large">Enter the following details </h2>
-                        <form method='post' action='issue_books.php'>
+                        <form method='post' action='return_books.php'>
                             <?php include('errors.php'); ?>
                             <br>
 
