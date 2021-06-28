@@ -90,11 +90,11 @@ $count3 = $row3['cnt1'];
                     </li>
                     <li>
                         <div class="dropdown">
-                            <button class="dropbtn">My_profile</button>
+                            <button class="dropbtn">My profile</button>
                             <div class="dropdown-content w-100">
-                                <a class="dropbtn1" onclick="addBook()" id="Profile">View_Profile</a>
-                                <a class="dropbtn1" onclick="addBook()" id="Edit_profile">Edit Profile</a>
-                                <a class="dropbtn1" onclick="addBook()" id="Password">Change Password</a>
+                                <a class="dropbtn1" id="Profile">View Profile</a>
+                                <a class="dropbtn1" id="Edit_profile">Edit Profile</a>
+                                <a class="dropbtn1" id="Password">Change Password</a>
 
                             </div>
                         </div>
@@ -114,7 +114,7 @@ $count3 = $row3['cnt1'];
 
             <div id="content">
 
-
+                <!--==================================== navbar start=================================-->
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
                     <img src="./style/logo.png" alt="logo">
                     <h3 id="title3">Library Management System</h3>
@@ -136,7 +136,9 @@ $count3 = $row3['cnt1'];
                         </ul>
                     </div>
                 </nav>
+                <!--==================================== navbar end=================================-->
                 <div class="main_site">
+                <!--==================================== veiw details start =================================-->
                     <div class="View_deatails" id="View_deatails">
                         <div class="form">
                             <img src="./style/logo.png" alt="" height="90px" width="auto" />
