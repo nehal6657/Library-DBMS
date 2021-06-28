@@ -68,7 +68,7 @@
                     // if (!$db) {
                     //   die('Could not connect: ' . mysql_error());
                     // }
-                    $sql_query = "select * from issues NATURAL JOIN issuer  WHERE return_date > now() ";
+                    $sql_query = "select * from issues NATURAL JOIN issuer ";
                     $result = mysqli_query($db, $sql_query);
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr>";
