@@ -76,14 +76,47 @@
                         echo "<td>" . $row['ISBN'] . "</td>";
                         echo "<td>" . $row['C_id'] . "</td>";
                         $r=$row['issue_date'];
+                        $date1 = strtotime($r);
+                        //echo date('d/M/Y h:i:s', $date1);
                         $i= $row['return_date'];
+                        $date2 = strtotime($i);
+                        //echo date('d/M/Y h:i:s', $date2);
+                        $datetime1 = new DateTime($r);
+                        $datetime2 = new DateTime($i);
+                        $diff = $datetime1->diff($datetime2);
+                        //echo $interval->format('%Y-%m-%d %H:%i:%s');
+
+                        $details=array_intersect_key((array)$diff,array_flip(['y','m','d','h','i','s']));
+
+                        $overdue_days = 0;
+                        $counter=0;
+
+                        //echo "nehal <br>";
+                        foreach ($details as $value) {
+                            //echo "$value <br>";
+                            if($counter === 0){
+                                $overdue_days = $overdue_days + 365*$value;
+                            }
+                            else if ($counter === 1){
+                                $overdue_days = $overdue_days + 30*$value;
+                            }
+                            else if ($counter === 2){
+                                $overdue_days = $overdue_days + $value;
+                            }
+                            $counter = $counter +1;
+
+                          } 
+                        //echo "nehal";
+                        
+                        
+
                         $sql = "SELECT  DATEDIFF('$i', '$r') asc cnt ";
                         $ro = mysqli_fetch_array(mysqli_query($db, $sql));
                         $d=$ro['cnt'];
-                        echo "<td>" . $row['issue_date'] . "</td>";
-                        echo "<td>" . $row['return_date'] . "</td>";
+                        echo "<td>" . date('d/M/Y h:i:s', $date2). "</td>";
+                        echo "<td>" . date('d/M/Y h:i:s', $date1) . "</td>";
                         
-                        echo "<td>" . $d . "</td>";
+                        echo "<td>" . /*$diff->format('%Y-%m-%d %H:%i:%s')*/  $overdue_days . "</td>";
 
                         echo "</tr>";
                     }
@@ -91,6 +124,7 @@
 
                     ?>
                 </table>
+
                 <div class="btq1 d-flex justify-content-center pb-0 mb-0"><a href="admin_home.php"><button type="submit" class="btn btn-primary s2">Go Back</button></a></div>
                    
             </div>
