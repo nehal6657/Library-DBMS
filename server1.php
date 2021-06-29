@@ -285,4 +285,68 @@ if (isset($_POST['admin_loginuser'])) {
         }
     }
 }
+$id='';
+$name='';
+$email='';
+$use='';
+
+
+if (isset($_POST['addins'])) {
+    // receive all input values from the form
+    
+    $use = mysqli_real_escape_string($db, $_POST['use']);
+    $name = mysqli_real_escape_string($db, $_POST['name']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password = mysqli_real_escape_string($db, $_POST['pas']);
+    
+    $type = $_POST['type'];
+
+
+
+    // form validation: ensure that the form is correctly filled ...
+    // by adding (array_push()) corresponding error unto $errors array
+    if (empty($use)) {
+        array_push($errors, "Username is required");
+    }
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
+    
+
+    // first check the database to make sure 
+    // a user does not already exist with the same username and/or email
+    $user_check = "SELECT * FROM instructor WHERE instructor_email='$email' LIMIT 1";
+    $result = mysqli_query($db, $user_check);
+    $user = mysqli_fetch_assoc($result);
+    $user_check_query1 = "SELECT * FROM instructor WHERE instructor_username='$use' LIMIT 1";
+    $result1 = mysqli_query($db, $user_check_query1);
+    $user1 = mysqli_fetch_assoc($result1);
+
+    if ($user) { // if user exists
+
+        if ($user['instructor_email'] === $email) {
+            array_push($errors, "email already exists");
+        }
+    }
+    if ($user1) { // if user exists
+
+        if ($user['instructor_username'] === $use) {
+            array_push($errors, "username  already exists");
+        }
+    }
+
+    // Finally, register user if there are no errors in the form
+    if (count($errors) == 0) {
+        // $password = md5($password_1); //encrypt the password before saving in the database
+
+        $query = "INSERT INTO instructor" . " ( `instructor_name`, `instructor_email`, `instructor_username`, `instructor_pass`) 
+  			  VALUES" . "('$name', '$email', '$use','$password')";
+        mysqli_query($db, $query);
+     
+        header('location: admin_home.php');
+    }
+}
 ?>

@@ -47,11 +47,19 @@ if (isset($_POST['reg_user'])) {
     $user_check_query = "SELECT * FROM students WHERE email='$email' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
-
+    $user_check = "SELECT * FROM students WHERE Username='$username' LIMIT 1";
+    $res = mysqli_query($db, $user_check);
+    $ur = mysqli_fetch_assoc($res);
     if ($user) { // if user exists
 
-        if ($user['email'] === $email) {
+        if ($ur['email'] === $email) {
             array_push($errors, "email already exists");
+        }
+    }
+    if ($ur) { // if user exists
+
+        if ($ur['Username'] === $username) {
+            array_push($errors, "username already exists");
         }
     }
 

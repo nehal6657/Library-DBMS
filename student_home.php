@@ -242,7 +242,7 @@ $count3 = $row3['cnt1'];
                         </table>
 
                         <form action="" method="post">
-                        <input type="text" class="form-control" placeholder="Search by book author" name="search1" aria-label="Quick Search for books" aria-describedby="basic-addon2" /><input type="submit" name="submit1" value="Search">
+                        <input type="text" class="form-control" placeholder="Search by book title" name="search1" aria-label="Quick Search for books" aria-describedby="basic-addon2" /><input type="submit" name="submit1" value="Search">
                         </form>
                         <table class="table table-striped table-hover ">
                         
