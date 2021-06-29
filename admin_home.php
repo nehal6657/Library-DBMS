@@ -96,7 +96,7 @@ $count8 = $row8['cntUser8'];
             <div class="dropdown">
               <button class="dropbtn">Books</button>
               <div class="dropdown-content w-100">
-                <a class="dropbtn1"  id="hideshowbooks">Add Book</a>
+                <a class="dropbtn1" id="hideshowbooks">Add Book</a>
                 <a id="add_copy">Add copies</a>
                 <a id="hsmanagebooks">View Books</a>
                 <a id="edit_books">Edit Book</a>
@@ -104,7 +104,7 @@ $count8 = $row8['cntUser8'];
               </div>
             </div>
           </li>
-         
+
           <li>
             <div class="dropdown">
               <button class="dropbtn">My Profile</button>
@@ -118,7 +118,7 @@ $count8 = $row8['cntUser8'];
             </div>
           </li>
           <li>
-            <a href="index.php">Information</a>
+            <a class="dropbtn1" onclick="addBook()" id="Ins">Add Instructor</a>
           </li>
 
 
@@ -264,7 +264,7 @@ $count8 = $row8['cntUser8'];
               <form action="return_books.php" method="post"><button type="submit" class="btn btn-primary s2 ml-2" name="issuebooks1" data-inline="true">Return Book</button></form>
 
             </div>
-            
+
           </div>
           <!--=======================dashboard end===================================-->
 
@@ -347,11 +347,11 @@ $count8 = $row8['cntUser8'];
                 <?php include('errors.php'); ?>
                 <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
-                <input type="text" placeholder="Author" name="Author"/>
+                <input type="text" placeholder="Author" name="Author" />
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
                 <!-- <input type="text" placeholder="Copy id" name="Cid" /> -->
-                
+
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -374,6 +374,27 @@ $count8 = $row8['cntUser8'];
             </div>
           </div>
           <!--adding books end-->
+
+          <div class="insti mt-2" id="insti">
+            <div class="form">
+              <img src="./style/logo.png" alt="" height="90px" width="auto" />
+              <h2 id="title2">Enter the Book details -></h2>
+              <form method='post' action='admin_home.php'>
+                <?php include('errors.php'); ?>
+                
+                <input type="text" placeholder="Instructor Name" name="name"  />
+                <input type="text" placeholder="Instructor Email" name="email" />
+                <input type="text" placeholder="Instructor username" name="use" />
+                <input type="text" placeholder="Instructor Password" name="pas" />
+                <!-- <input type="text" placeholder="Copy id" name="Cid" /> -->
+
+
+                <br>
+                <button type="Submit" name="addins">Add Instructor</button>
+
+              </form>
+            </div>
+          </div>
           <!--adding copies-->
           <div class="addcopy mt-2" id="addcopy1">
             <div class="form">
@@ -383,7 +404,7 @@ $count8 = $row8['cntUser8'];
                 <?php include('errors.php'); ?>
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
                 <input type="text" placeholder="Copy id" name="Cid" />
-                
+
                 <br>
                 <button type="Submit" name="addcopy">create</button>
 
@@ -455,10 +476,10 @@ $count8 = $row8['cntUser8'];
                 <input type="text" placeholder="title of book" name="title" value="<?php echo $title; ?>" />
                 <input type="text" placeholder="ISBN number" name="ISBN" value="<?php echo $ISBN; ?>" />
                 <input type="text" placeholder="Author" name="Author" />
-                
+
                 <input type="text" placeholder="publisher name" name="publisher" value="<?php echo $publisher; ?>" />
                 <input type="text" placeholder="edition of book" name="edition" />
-                
+
                 <p class="text-left"> <strong><b>Is refrence Book:</b></strong></p>
                 <div class="text-left">
 
@@ -580,6 +601,16 @@ $count8 = $row8['cntUser8'];
   jQuery(document).ready(function() {
     jQuery('#Profile').on('click', function(event) {
       jQuery('#View_deatails').toggle('show');
+      jQuery('.dashhh').toggle('hide');
+    });
+  });
+</script>
+
+<script>
+  $('.insti').hide();
+  jQuery(document).ready(function() {
+    jQuery('#Ins').on('click', function(event) {
+      jQuery('#insti').toggle('show');
       jQuery('.dashhh').toggle('hide');
     });
   });
